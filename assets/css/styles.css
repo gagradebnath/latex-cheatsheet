@@ -292,7 +292,7 @@ footer {
     position: fixed;
     right: 24px;
     bottom: 18px;
-    background: var(--accent-color);
+    background: red;
     color: #fff;
     padding: 8px 18px;
     border-radius: 20px 8px 20px 8px;
