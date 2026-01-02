@@ -296,12 +296,18 @@ footer {
     color: #fff;
     padding: 8px 18px;
     border-radius: 20px 8px 20px 8px;
-    font-size: 1em;
+    font-size: 1.5em;
     font-family: monospace;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     opacity: 0.92;
-    z-index: 2000;
-    pointer-events: none;
+    z-index: 9999;
+    pointer-events: auto;
+}
+
+#floating-footer a {
+    color: #fff;
+    text-decoration: underline;
+    pointer-events: auto;
 }
 
 /* Responsive design */
