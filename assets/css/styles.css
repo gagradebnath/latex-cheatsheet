@@ -1,0 +1,350 @@
+/* Ultimate LaTeX Cheat Sheet - Styles */
+/* Author: gagradebnath */
+/* Generated: January 2, 2026 */
+
+/* CSS Variables for theming */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-code: #f5f5f5;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --accent-color: #0066cc;
+    --accent-hover: #0052a3;
+    --sidebar-bg: #2c3e50;
+    --sidebar-text: #ecf0f1;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-code: #3a3a3a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --border-color: #444;
+    --accent-color: #4da6ff;
+    --accent-hover: #66b3ff;
+    --sidebar-bg: #1a1a1a;
+    --sidebar-text: #e0e0e0;
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and layout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    display: flex;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Sidebar styles */
+#sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    overflow-y: auto;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+#sidebar h2 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    color: var(--sidebar-text);
+}
+
+#sidebar nav ul {
+    list-style: none;
+}
+
+#sidebar nav ul li {
+    margin: 8px 0;
+}
+
+#sidebar nav ul li a {
+    color: var(--sidebar-text);
+    text-decoration: none;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    font-size: 0.9em;
+}
+
+#sidebar nav ul li a:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Theme toggle button */
+#theme-toggle {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+#theme-toggle:hover {
+    background: var(--accent-hover);
+}
+
+/* Main content area */
+#content {
+    margin-left: 280px;
+    padding: 40px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid var(--accent-color);
+}
+
+header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+header p {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+}
+
+/* Section styles */
+section {
+    margin-bottom: 50px;
+}
+
+section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+section h3 {
+    font-size: 1.5em;
+    margin: 25px 0 15px 0;
+    color: var(--text-primary);
+}
+
+section h4 {
+    font-size: 1.2em;
+    margin: 20px 0 10px 0;
+    color: var(--text-primary);
+}
+
+/* Paragraph and text styles */
+p {
+    margin-bottom: 15px;
+}
+
+/* Code block styles */
+pre {
+    background: var(--bg-code);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 15px;
+    overflow-x: auto;
+    margin: 15px 0;
+    position: relative;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+}
+
+/* Copy button styles */
+.copy-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.copy-btn:hover {
+    opacity: 1;
+}
+
+/* Details/summary styles for collapsible sections */
+details {
+    margin: 20px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 10px;
+    background: var(--bg-secondary);
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+    user-select: none;
+    color: var(--accent-color);
+}
+
+summary:hover {
+    background: var(--bg-code);
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: var(--bg-secondary);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: var(--accent-color);
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background: var(--bg-code);
+}
+
+/* Two-column layout */
+.two-column {
+    columns: 2;
+    column-gap: 30px;
+}
+
+/* Note and warning boxes */
+.note {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] .note {
+    background: #3d3a2a;
+    border-left-color: #ffc107;
+}
+
+.warning {
+    background: #f8d7da;
+    border-left: 4px solid #dc3545;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] .warning {
+    background: #3a2a2d;
+    border-left-color: #dc3545;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+    border-top: 2px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+/* Floating footer */
+#floating-footer {
+    position: fixed;
+    right: 24px;
+    bottom: 18px;
+    background: var(--accent-color);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px 8px 20px 8px;
+    font-size: 1em;
+    font-family: monospace;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    opacity: 0.92;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+
+    #sidebar.open {
+        transform: translateX(0);
+    }
+
+    #content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .two-column {
+        columns: 1;
+    }
+
+    #floating-footer {
+        display: none; /* Hide on mobile for better UX */
+    }
+}
+
+/* Print styles */
+@media print {
+    #sidebar, #theme-toggle, .copy-btn, #floating-footer {
+        display: none !important;
+    }
+
+    #content {
+        margin-left: 0;
+    }
+
+    body {
+        font-size: 12pt;
+    }
+
+    pre {
+        background: white !important;
+        border: 1px solid black !important;
+    }
+}
