@@ -325,7 +325,7 @@ footer {
     }
 
     #floating-footer {
-        display: none; /* Hide on mobile for better UX */
+        display: block; /* Hide on mobile for better UX */
     }
 }
 
