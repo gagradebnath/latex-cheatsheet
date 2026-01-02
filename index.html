@@ -1,0 +1,3704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate LaTeX Cheat Sheet - Complete Reference</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-code: #f5f5f5;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --accent-color: #0066cc;
+            --accent-hover: #0052a3;
+            --sidebar-bg: #2c3e50;
+            --sidebar-text: #ecf0f1;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-code: #3a3a3a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-color: #444;
+            --accent-color: #4da6ff;
+            --accent-hover: #66b3ff;
+            --sidebar-bg: #1a1a1a;
+            --sidebar-text: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        #sidebar {
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        #sidebar h2 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: var(--sidebar-text);
+        }
+        
+        #sidebar nav ul {
+            list-style: none;
+        }
+        
+        #sidebar nav ul li {
+            margin: 8px 0;
+        }
+        
+        #sidebar nav ul li a {
+            color: var(--sidebar-text);
+            text-decoration: none;
+            display: block;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+            font-size: 0.9em;
+        }
+        
+        #sidebar nav ul li a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        #theme-toggle {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        
+        #theme-toggle:hover {
+            background: var(--accent-hover);
+        }
+        
+        #content {
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        header p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        
+        section h3 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            color: var(--text-primary);
+        }
+        
+        section h4 {
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+            color: var(--text-primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        pre {
+            background: var(--bg-code);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            padding: 5px 10px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8em;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .copy-btn:hover {
+            opacity: 1;
+        }
+        
+        details {
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+            background: var(--bg-secondary);
+        }
+        
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px;
+            user-select: none;
+            color: var(--accent-color);
+        }
+        
+        summary:hover {
+            background: var(--bg-code);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--bg-secondary);
+        }
+        
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background: var(--bg-code);
+        }
+        
+        .two-column {
+            columns: 2;
+            column-gap: 30px;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        [data-theme="dark"] .note {
+            background: #3d3a2a;
+            border-left-color: #ffc107;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        [data-theme="dark"] .warning {
+            background: #3a2a2d;
+            border-left-color: #dc3545;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 2px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            
+            #sidebar.open {
+                transform: translateX(0);
+            }
+            
+            #content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .two-column {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <h2>📚 Contents</h2>
+        <nav>
+            <ul>
+                <li><a href="#section1">1. Document Structure</a></li>
+                <li><a href="#section2">2. Text Formatting</a></li>
+                <li><a href="#section3">3. Math Mode</a></li>
+                <li><a href="#section4">4. Symbols</a></li>
+                <li><a href="#section5">5. Tables</a></li>
+                <li><a href="#section6">6. Figures & Floats</a></li>
+                <li><a href="#section7">7. Lists</a></li>
+                <li><a href="#section8">8. References</a></li>
+                <li><a href="#section9">9. Page Layout</a></li>
+                <li><a href="#section10">10. Colors & Graphics</a></li>
+                <li><a href="#section11">11. Code & Algorithms</a></li>
+                <li><a href="#section12">12. Advanced Features</a></li>
+                <li><a href="#section13">13. Specialized Domains</a></li>
+                <li><a href="#section14">14. Beamer</a></li>
+                <li><a href="#section15">15. Troubleshooting</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle">🌓 Toggle Theme</button>
+    </aside>
+    
+    <main id="content">
+        <header>
+            <h1>Ultimate LaTeX Cheat Sheet</h1>
+            <p>The Most Complete LaTeX Reference Ever Created</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">From Beginner to PhD Researcher</p>
+        </header>
+
+        <!-- SECTION 1: DOCUMENT STRUCTURE -->
+        <section id="section1">
+            <h2>1. Document Structure</h2>
+            
+            <h3>Minimal Document</h3>
+            <p>Every LaTeX document starts with a document class and wraps content in the document environment.</p>
+            <pre><code>\documentclass{article}
+\begin{document}
+Hello, World!
+\end{document}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Preamble Anatomy</h3>
+            <p>The preamble is everything before \begin{document}. It contains package imports, custom commands, and document settings.</p>
+            <pre><code>\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{My Document}
+\author{Author Name}
+\date{\today}
+
+\begin{document}
+\maketitle
+% Content here
+\end{document}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>Document Classes</summary>
+                <h4>article</h4>
+                <p>For short documents, scientific papers, journal articles.</p>
+                <pre><code>\documentclass[11pt,a4paper,twocolumn]{article}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>report</h4>
+                <p>For longer documents with chapters, theses, books.</p>
+                <pre><code>\documentclass[12pt,oneside]{report}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>book</h4>
+                <p>For full books with front/main/back matter.</p>
+                <pre><code>\documentclass[twoside,openright]{book}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>memoir</h4>
+                <p>Enhanced book class with more layout options.</p>
+                <pre><code>\documentclass[14pt,extrafontsizes]{memoir}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>beamer</h4>
+                <p>For presentations and slides.</p>
+                <pre><code>\documentclass[aspectratio=169]{beamer}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>IEEEtran</h4>
+                <p>For IEEE journal and conference papers.</p>
+                <pre><code>\documentclass[conference]{IEEEtran}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <details>
+                <summary>Document Class Options</summary>
+                <h4>Font Sizes</h4>
+                <pre><code>10pt, 11pt, 12pt (default sizes)
+\documentclass[14pt]{extarticle} % Extended sizes</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Paper Sizes</h4>
+                <pre><code>a4paper, letterpaper, a5paper, b5paper, legalpaper, executivepaper</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Layout Options</h4>
+                <pre><code>oneside, twoside     % Single or double-sided
+onecolumn, twocolumn % Column layout
+landscape            % Landscape orientation
+draft, final         % Draft mode shows overfull boxes
+titlepage, notitlepage
+openright, openany   % Chapter starting (book/report)</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Title, Author, Date</h3>
+            <pre><code>\title{My Amazing Paper\\
+       \large Subtitle Here}
+\author{John Doe\thanks{Funded by XYZ} \and Jane Smith}
+\date{January 2026}
+% or \date{\today} for automatic date
+% or \date{} for no date
+
+\begin{document}
+\maketitle
+\end{document}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Abstract</h3>
+            <pre><code>\begin{abstract}
+This document presents a comprehensive overview of...
+The main findings include...
+\end{abstract}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Front/Main/Back Matter (book class)</h3>
+            <pre><code>\frontmatter  % Roman page numbers, unnumbered chapters
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter   % Arabic page numbers, numbered chapters
+\chapter{Introduction}
+...
+
+\backmatter   % Unnumbered chapters
+\appendix
+\chapter{Additional Data}
+\bibliography{references}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Document Sections</h3>
+            <pre><code>% For article class:
+\section{Introduction}
+\subsection{Background}
+\subsubsection{Specific Topic}
+\paragraph{Minor heading}
+\subparagraph{Smallest heading}
+
+% For book/report class:
+\chapter{Chapter Title}
+\section{Section Title}
+\subsection{Subsection Title}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Table of Contents</h3>
+            <pre><code>\tableofcontents
+\listoffigures
+\listoftables
+\listofalgorithms % requires algorithm package
+
+% Control depth
+\setcounter{tocdepth}{3}    % Show up to subsubsection
+\setcounter{secnumdepth}{3} % Number up to subsubsection</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 2: TEXT FORMATTING -->
+        <section id="section2">
+            <h2>2. Text Formatting</h2>
+
+            <h3>Font Styles</h3>
+            <pre><code>\textbf{Bold text}
+\textit{Italic text}
+\textsl{Slanted text}
+\textsc{Small Caps}
+\texttt{Typewriter (monospace)}
+\textsf{Sans Serif}
+\textrm{Roman (serif)}
+\textup{Upright}
+\textmd{Medium weight}
+\emph{Emphasized (usually italic)}
+
+% Nesting
+\textbf{\textit{Bold and italic}}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Font Sizes</h3>
+            <pre><code>{\tiny Tiny text}
+{\scriptsize Script size}
+{\footnotesize Footnote size}
+{\small Small}
+{\normalsize Normal (default)}
+{\large Large}
+{\Large Larger}
+{\LARGE Even larger}
+{\huge Huge}
+{\Huge Hugest}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Font Families</h3>
+            <pre><code>% Modern fonts
+\usepackage{lmodern}       % Latin Modern
+\usepackage{palatino}      % Palatino
+\usepackage{times}         % Times
+\usepackage{helvet}        % Helvetica
+\usepackage{courier}       % Courier
+\usepackage{charter}       % Charter
+
+% Math fonts
+\usepackage{mathptmx}      % Times for text and math
+\usepackage{mathpazo}      % Palatino for text and math
+
+% Custom fonts with XeLaTeX/LuaLaTeX
+\usepackage{fontspec}
+\setmainfont{Arial}
+\setsansfont{Calibri}
+\setmonofont{Consolas}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Text Alignment</h3>
+            <pre><code>\begin{flushleft}
+Left-aligned text
+\end{flushleft}
+
+\begin{flushright}
+Right-aligned text
+\end{flushright}
+
+\begin{center}
+Centered text
+\end{center}
+
+\centering % Declaration form (in groups)
+\raggedright % Left-align
+\raggedleft  % Right-align</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Line Spacing</h3>
+            <pre><code>\usepackage{setspace}
+
+\singlespacing
+\onehalfspacing
+\doublespacing
+
+% Custom spacing
+\setstretch{1.25}
+
+% Spacing in environments
+\begin{spacing}{1.5}
+Text with 1.5 line spacing
+\end{spacing}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Paragraph Formatting</h3>
+            <pre><code>% Indentation
+\setlength{\parindent}{0pt}    % No indentation
+\setlength{\parindent}{1cm}    % 1cm indentation
+\noindent Start without indent % For one paragraph
+
+% Paragraph spacing
+\setlength{\parskip}{1em}
+
+% Line breaks
+\\         % New line (in special environments)
+\newline   % New line
+\\[1cm]    % New line with vertical space
+\linebreak[priority] % Break line with justification
+
+% Page breaks
+\newpage
+\clearpage
+\pagebreak[priority]</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Hyphenation</h3>
+            <pre><code>% Manual hyphenation
+Su\-per\-cal\-i\-frag\-i\-lis\-tic\-ex\-pi\-al\-i\-do\-cious
+
+% Prevent hyphenation
+\mbox{text-that-should-not-break}
+\hyphenation{FORTRAN Hy-phen-a-tion}
+
+% Language-specific
+\usepackage[english]{babel}
+\usepackage[german]{babel}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>Quotation Marks and Quotes</summary>
+                <h4>Quotation Marks</h4>
+                <pre><code>`single quotes'
+``double quotes''
+\enquote{Smart quotes} % requires csquotes package</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Block Quotes</h4>
+                <pre><code>\begin{quote}
+Short quotation (indented both sides)
+\end{quote}
+
+\begin{quotation}
+Longer quotation with paragraph indents
+Multiple paragraphs supported
+\end{quotation}
+
+\begin{verse}
+Poetry and verse\\
+Line breaks matter here\\
+Each line explicit
+\end{verse}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Underlining and Striking</h3>
+            <pre><code>\underline{Underlined text}
+\usepackage{ulem}
+\uline{Underline}
+\uuline{Double underline}
+\uwave{Wavy underline}
+\sout{Strike through}
+\xout{Crossed out}
+
+\usepackage{soul}
+\ul{Underline with soul}
+\st{Strike through with soul}
+\hl{Highlight}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Verbatim Text</h3>
+            <pre><code>% Inline verbatim
+\verb|#$%^&*|
+\verb+code with special chars+
+
+% Verbatim environment
+\begin{verbatim}
+Code and text exactly as typed
+Preserves   spaces   and
+special characters: $#%^&*
+\end{verbatim}
+
+% With line numbers
+\usepackage{fancyvrb}
+\begin{Verbatim}[numbers=left,numbersep=3pt]
+Line 1 of code
+Line 2 of code
+\end{Verbatim}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Special Characters</h3>
+            <pre><code>% Reserved characters
+\#  \$  \%  \^{}  \&  \_  \{  \}  \~{}  \textbackslash
+
+% Text symbols
+\dag      % Dagger †
+\ddag     % Double dagger ‡
+\S        % Section §
+\P        % Paragraph ¶
+\copyright  % ©
+\pounds     % £
+\textregistered  % ®
+\texttrademark   % ™
+
+% Accents
+\'e  \`e  \^e  \"e  \~n  \=a  \.c  \u{o}  \v{s}  \H{o}  \t{oo}
+\c{c}  \d{u}  \b{o}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Spacing</h3>
+            <pre><code>% Horizontal space
+\,        % Thin space
+\:        % Medium space
+\;        % Thick space
+\quad     % 1em space
+\qquad    % 2em space
+\hspace{1cm}
+\hspace*{1cm}  % Not removed at line breaks
+\hfill    % Fill available space
+
+% Vertical space
+\vspace{1cm}
+\vspace*{1cm}  % Not removed at page breaks
+\vfill    % Fill available vertical space
+\bigskip  \medskip  \smallskip</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 3: MATH MODE -->
+        <section id="section3">
+            <h2>3. Math Mode</h2>
+
+            <h3>Inline vs Display Math</h3>
+            <pre><code>% Inline math
+Einstein's formula is $E = mc^2$ in physics.
+Alternative: \(E = mc^2\)
+
+% Display math (unnumbered)
+\[ E = mc^2 \]
+\begin{equation*}
+E = mc^2
+\end{equation*}
+
+% Display math (numbered)
+\begin{equation}
+E = mc^2
+\label{eq:einstein}
+\end{equation}
+
+Reference: See Equation~\ref{eq:einstein}.</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>Greek Letters (Complete)</summary>
+                <table>
+                    <tr><th>Lowercase</th><th>LaTeX</th><th>Uppercase</th><th>LaTeX</th></tr>
+                    <tr><td>α</td><td>\alpha</td><td>A</td><td>A</td></tr>
+                    <tr><td>β</td><td>\beta</td><td>B</td><td>B</td></tr>
+                    <tr><td>γ</td><td>\gamma</td><td>Γ</td><td>\Gamma</td></tr>
+                    <tr><td>δ</td><td>\delta</td><td>Δ</td><td>\Delta</td></tr>
+                    <tr><td>ε, ϵ</td><td>\epsilon, \varepsilon</td><td>E</td><td>E</td></tr>
+                    <tr><td>ζ</td><td>\zeta</td><td>Z</td><td>Z</td></tr>
+                    <tr><td>η</td><td>\eta</td><td>H</td><td>H</td></tr>
+                    <tr><td>θ, ϑ</td><td>\theta, \vartheta</td><td>Θ</td><td>\Theta</td></tr>
+                    <tr><td>ι</td><td>\iota</td><td>I</td><td>I</td></tr>
+                    <tr><td>κ</td><td>\kappa</td><td>K</td><td>K</td></tr>
+                    <tr><td>λ</td><td>\lambda</td><td>Λ</td><td>\Lambda</td></tr>
+                    <tr><td>μ</td><td>\mu</td><td>M</td><td>M</td></tr>
+                    <tr><td>ν</td><td>\nu</td><td>N</td><td>N</td></tr>
+                    <tr><td>ξ</td><td>\xi</td><td>Ξ</td><td>\Xi</td></tr>
+                    <tr><td>ο</td><td>o</td><td>O</td><td>O</td></tr>
+                    <tr><td>π, ϖ</td><td>\pi, \varpi</td><td>Π</td><td>\Pi</td></tr>
+                    <tr><td>ρ, ϱ</td><td>\rho, \varrho</td><td>P</td><td>P</td></tr>
+                    <tr><td>σ, ς</td><td>\sigma, \varsigma</td><td>Σ</td><td>\Sigma</td></tr>
+                    <tr><td>τ</td><td>\tau</td><td>T</td><td>T</td></tr>
+                    <tr><td>υ</td><td>\upsilon</td><td>Υ</td><td>\Upsilon</td></tr>
+                    <tr><td>φ, ϕ</td><td>\phi, \varphi</td><td>Φ</td><td>\Phi</td></tr>
+                    <tr><td>χ</td><td>\chi</td><td>X</td><td>X</td></tr>
+                    <tr><td>ψ</td><td>\psi</td><td>Ψ</td><td>\Psi</td></tr>
+                    <tr><td>ω</td><td>\omega</td><td>Ω</td><td>\Omega</td></tr>
+                </table>
+            </details>
+
+            <h3>Superscripts and Subscripts</h3>
+            <pre><code>$x^2$           % Superscript
+$x_i$           % Subscript
+$x^{10}$        % Multiple characters
+$x_{ij}$        % Multiple subscripts
+$x^2_i$         % Both
+$x_i^2$         % Order doesn't matter
+${}_1^2\!X_3^4$ % Pre-sub and pre-super
+$a_{i_j}$       % Nested</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Fractions and Binomials</h3>
+            <pre><code>$\frac{a}{b}$           % Standard fraction
+$\dfrac{a}{b}$          % Display style fraction
+$\tfrac{a}{b}$          % Text style fraction
+$\frac{1}{2}$           % One half
+$\frac{\frac{a}{b}}{c}$ % Nested fractions
+$\cfrac{a}{b}$          % Continued fractions
+
+% Binomials
+$\binom{n}{k}$          % Binomial coefficient
+$\dbinom{n}{k}$         % Display style
+$\tbinom{n}{k}$         % Text style</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Roots</h3>
+            <pre><code>$\sqrt{x}$              % Square root
+$\sqrt[3]{x}$           % Cube root
+$\sqrt[n]{x}$           % nth root
+$\sqrt{\frac{a}{b}}$    % Complex expressions</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Sums, Products, Limits</h3>
+            <pre><code>% Sums
+$\sum_{i=1}^{n} x_i$        % Inline sum
+\[\sum_{i=1}^{n} x_i\]      % Display sum
+$\sum\limits_{i=1}^{n}$     % Force limits above/below
+$\sum\nolimits_{i=1}^{n}$   % Force limits to side
+
+% Products
+$\prod_{i=1}^{n} x_i$       % Product
+$\coprod_{i=1}^{n}$         % Coproduct
+
+% Limits
+$\lim_{x \to \infty} f(x)$
+$\lim\limits_{x \to 0}$
+$\limsup_{n \to \infty}$
+$\liminf_{n \to \infty}$
+
+% Others
+$\bigcup_{i=1}^{n} A_i$     % Union
+$\bigcap_{i=1}^{n} A_i$     % Intersection
+$\bigoplus_{i=1}^{n}$       % Direct sum
+$\bigotimes_{i=1}^{n}$      % Tensor product</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Integrals</h3>
+            <pre><code>$\int f(x) \, dx$               % Integral
+$\int_{a}^{b} f(x) \, dx$       % Definite integral
+$\iint f(x,y) \, dx\,dy$        % Double integral
+$\iiint f(x,y,z) \, dx\,dy\,dz$ % Triple integral
+$\oint \vec{F} \cdot d\vec{r}$  % Contour integral
+$\int\limits_{a}^{b}$           % Limits above/below
+
+% Multiple integrals
+\[\int_{0}^{\infty} \int_{0}^{\infty} e^{-(x^2+y^2)} dx\,dy\]</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>Matrix Environments</summary>
+                <h4>All Matrix Types</h4>
+                <pre><code>% Plain matrix (no delimiters)
+\begin{matrix}
+a & b \\
+c & d
+\end{matrix}
+
+% Parentheses (round brackets)
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+
+% Brackets (square brackets)
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+
+% Braces (curly brackets)
+\begin{Bmatrix}
+a & b \\
+c & d
+\end{Bmatrix}
+
+% Vertical bars (determinant)
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix}
+
+% Double vertical bars (norm)
+\begin{Vmatrix}
+a & b \\
+c & d
+\end{Vmatrix}
+
+% Small matrices (inline)
+$\bigl(\begin{smallmatrix} a&b\\c&d \end{smallmatrix}\bigr)$
+
+% Arrays with custom delimiters
+\left[\begin{array}{cc}
+a & b \\
+c & d
+\end{array}\right]
+
+% Augmented matrix
+\left[\begin{array}{cc|c}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{array}\right]</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Large Matrices</h4>
+                <pre><code>\[
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+\]</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Cases and Piecewise Functions</h3>
+            <pre><code>% Cases environment
+\[
+f(x) = \begin{cases}
+x^2 & \text{if } x \geq 0 \\
+-x^2 & \text{if } x < 0
+\end{cases}
+\]
+
+% Absolute value
+\[
+|x| = \begin{cases}
+x & \text{if } x \geq 0 \\
+-x & \text{if } x < 0
+\end{cases}
+\]
+
+% Multiple cases
+\[
+\text{sign}(x) = \begin{cases}
+1 & x > 0 \\
+0 & x = 0 \\
+-1 & x < 0
+\end{cases}
+\]</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>Alignment Environments</summary>
+                <h4>align (numbered)</h4>
+                <pre><code>\begin{align}
+f(x) &= x^2 + 2x + 1 \\
+     &= (x + 1)^2
+\end{align}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>align* (unnumbered)</h4>
+                <pre><code>\begin{align*}
+x &= a + b \\
+y &= c + d
+\end{align*}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>gather (centered)</h4>
+                <pre><code>\begin{gather}
+a = b + c \\
+d = e + f
+\end{gather}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>multline (long equations)</h4>
+                <pre><code>\begin{multline}
+a + b + c + d + e + f \\
++ g + h + i + j + k
+\end{multline}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>split (inside equation)</h4>
+                <pre><code>\begin{equation}
+\begin{split}
+f(x) &= x^4 + 7x^3 + 2x^2 \\
+     &\quad - 10x + 12
+\end{split}
+\end{equation}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>aligned (sub-alignment)</h4>
+                <pre><code>\[
+\left.
+\begin{aligned}
+a &= b \\
+c &= d
+\end{aligned}
+\right\} \text{system}
+\]</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Equation Numbering and Tagging</h3>
+            <pre><code>% Numbered equation
+\begin{equation}
+E = mc^2
+\label{eq:einstein}
+\end{equation}
+
+% Custom tag
+\begin{equation}
+a^2 + b^2 = c^2
+\tag{Pythagorean}
+\end{equation}
+
+% No number for specific line in align
+\begin{align}
+x &= 1 \notag \\
+y &= 2
+\end{align}
+
+% Reference
+See Equation~\eqref{eq:einstein}.</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>Theorems, Proofs, Lemmas</summary>
+                <pre><code>\usepackage{amsthm}
+
+% Define theorem styles
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{note}{Note}
+
+% Usage
+\begin{theorem}[Pythagorean Theorem]
+In a right triangle, $a^2 + b^2 = c^2$.
+\end{theorem}
+
+\begin{proof}
+Consider a square with side length $a+b$...
+Therefore, $a^2 + b^2 = c^2$.
+\end{proof}
+
+\begin{lemma}\label{lem:key}
+This is an important lemma.
+\end{lemma}
+
+\begin{corollary}
+As a consequence of Lemma~\ref{lem:key}...
+\end{corollary}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Math Font Styles</h3>
+            <pre><code>% Blackboard bold (sets)
+$\mathbb{R}$ $\mathbb{C}$ $\mathbb{Q}$ $\mathbb{Z}$ $\mathbb{N}$
+
+% Calligraphic
+$\mathcal{A}$ $\mathcal{B}$ $\mathcal{L}$ $\mathcal{F}$
+
+% Fraktur (algebras)
+$\mathfrak{g}$ $\mathfrak{h}$ $\mathfrak{sl}$
+
+% Script (requires mathrsfs)
+\usepackage{mathrsfs}
+$\mathscr{L}$ $\mathscr{F}$ $\mathscr{H}$
+
+% Bold
+$\mathbf{x}$ $\mathbf{A}$ $\boldsymbol{\alpha}$
+
+% Sans serif
+$\mathsf{text}$
+
+% Typewriter
+$\mathtt{code}$
+
+% Roman
+$\mathrm{d}x$ % differential
+$\text{for all } x$ % text in math</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Delimiters</h3>
+            <pre><code>% Auto-sizing
+\left( \frac{a}{b} \right)
+\left[ \sum_{i=1}^{n} x_i \right]
+\left\{ x \mid x > 0 \right\}
+\left| \frac{a}{b} \right|
+\left\| \mathbf{v} \right\|
+\left< \psi | \phi \right>
+\left\lfloor x \right\rfloor  % Floor
+\left\lceil x \right\rceil    % Ceiling
+
+% Manual sizing
+\big( \Big( \bigg( \Bigg(
+\big) \Big) \bigg) \Bigg)
+\big[ \Big[ \bigg[ \Bigg[
+
+% Invisible delimiter
+\left. \frac{df}{dx} \right|_{x=0}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Operators and Functions</h3>
+            <pre><code>% Standard functions
+\sin x, \cos x, \tan x
+\arcsin x, \arccos x, \arctan x
+\sinh x, \cosh x, \tanh x
+\log x, \ln x, \lg x, \exp x
+\max, \min, \sup, \inf
+\deg, \det, \dim, \ker, \hom
+\Pr, \gcd, \arg
+
+% Custom operators
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator*{\argmax}{arg\,max}
+$\Tr(A)$ $\argmax_{x} f(x)$</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Accents and Decorations</h3>
+            <pre><code>$\hat{a}$ $\widehat{abc}$     % Hat
+$\bar{a}$ $\overline{abc}$     % Bar
+$\tilde{a}$ $\widetilde{abc}$  % Tilde
+$\vec{a}$ $\overrightarrow{AB}$ % Vector
+$\dot{a}$ $\ddot{a}$           % Dots
+$\check{a}$ $\breve{a}$        % Check, breve
+$\acute{a}$ $\grave{a}$        % Accents
+$\mathring{a}$                 % Ring
+$\underline{text}$             % Underline
+$\overbrace{a+b+c}^{text}$     % Overbrace
+$\underbrace{x+y}_{=z}$        % Underbrace</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Spacing in Math Mode</h3>
+            <pre><code>$a\!b$      % Negative thin space
+$a\,b$      % Thin space (for integrals: dx)
+$a\:b$      % Medium space
+$a\;b$      % Thick space
+$a\ b$      % Normal space
+$a\quad b$  % Quad space
+$a\qquad b$ % Double quad</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 4: SYMBOLS -->
+        <section id="section4">
+            <h2>4. Mathematical Symbols</h2>
+
+            <details>
+                <summary>Binary Operations</summary>
+                <table>
+                    <tr><th>Symbol</th><th>LaTeX</th><th>Description</th></tr>
+                    <tr><td>+</td><td>+</td><td>Plus</td></tr>
+                    <tr><td>−</td><td>-</td><td>Minus</td></tr>
+                    <tr><td>×</td><td>\times</td><td>Times</td></tr>
+                    <tr><td>÷</td><td>\div</td><td>Division</td></tr>
+                    <tr><td>±</td><td>\pm</td><td>Plus-minus</td></tr>
+                    <tr><td>∓</td><td>\mp</td><td>Minus-plus</td></tr>
+                    <tr><td>·</td><td>\cdot</td><td>Centered dot</td></tr>
+                    <tr><td>∗</td><td>\ast</td><td>Asterisk</td></tr>
+                    <tr><td>⋆</td><td>\star</td><td>Star</td></tr>
+                    <tr><td>∘</td><td>\circ</td><td>Circle (composition)</td></tr>
+                    <tr><td>∙</td><td>\bullet</td><td>Bullet</td></tr>
+                    <tr><td>⊕</td><td>\oplus</td><td>Circled plus</td></tr>
+                    <tr><td>⊖</td><td>\ominus</td><td>Circled minus</td></tr>
+                    <tr><td>⊗</td><td>\otimes</td><td>Tensor product</td></tr>
+                    <tr><td>⊘</td><td>\oslash</td><td>Circled slash</td></tr>
+                    <tr><td>⊙</td><td>\odot</td><td>Circled dot</td></tr>
+                    <tr><td>△</td><td>\triangle</td><td>Triangle</td></tr>
+                    <tr><td>⊎</td><td>\uplus</td><td>Multiset union</td></tr>
+                    <tr><td>⊓</td><td>\sqcap</td><td>Square cap</td></tr>
+                    <tr><td>⊔</td><td>\sqcup</td><td>Square cup</td></tr>
+                    <tr><td>∧</td><td>\wedge or \land</td><td>Logical and</td></tr>
+                    <tr><td>∨</td><td>\vee or \lor</td><td>Logical or</td></tr>
+                    <tr><td>⊲</td><td>\lhd</td><td>Left triangle</td></tr>
+                    <tr><td>⊳</td><td>\rhd</td><td>Right triangle</td></tr>
+                </table>
+            </details>
+
+            <details>
+                <summary>Relation Symbols</summary>
+                <table>
+                    <tr><th>Symbol</th><th>LaTeX</th><th>Description</th></tr>
+                    <tr><td>=</td><td>=</td><td>Equals</td></tr>
+                    <tr><td>≠</td><td>\neq or \ne</td><td>Not equal</td></tr>
+                    <tr><td>≡</td><td>\equiv</td><td>Equivalent</td></tr>
+                    <tr><td>≈</td><td>\approx</td><td>Approximately</td></tr>
+                    <tr><td>∼</td><td>\sim</td><td>Similar</td></tr>
+                    <tr><td>≃</td><td>\simeq</td><td>Similar or equal</td></tr>
+                    <tr><td>≅</td><td>\cong</td><td>Congruent</td></tr>
+                    <tr><td><</td><td><</td><td>Less than</td></tr>
+                    <tr><td>></td><td>></td><td>Greater than</td></tr>
+                    <tr><td>≤</td><td>\leq or \le</td><td>Less or equal</td></tr>
+                    <tr><td>≥</td><td>\geq or \ge</td><td>Greater or equal</td></tr>
+                    <tr><td>≪</td><td>\ll</td><td>Much less than</td></tr>
+                    <tr><td>≫</td><td>\gg</td><td>Much greater than</td></tr>
+                    <tr><td>∝</td><td>\propto</td><td>Proportional</td></tr>
+                    <tr><td>∈</td><td>\in</td><td>Element of</td></tr>
+                    <tr><td>∉</td><td>\notin</td><td>Not element of</td></tr>
+                    <tr><td>∋</td><td>\ni</td><td>Contains</td></tr>
+                    <tr><td>⊂</td><td>\subset</td><td>Proper subset</td></tr>
+                    <tr><td>⊆</td><td>\subseteq</td><td>Subset or equal</td></tr>
+                    <tr><td>⊃</td><td>\supset</td><td>Proper superset</td></tr>
+                    <tr><td>⊇</td><td>\supseteq</td><td>Superset or equal</td></tr>
+                    <tr><td>⊥</td><td>\perp</td><td>Perpendicular</td></tr>
+                    <tr><td>∥</td><td>\parallel</td><td>Parallel</td></tr>
+                    <tr><td>⊢</td><td>\vdash</td><td>Proves</td></tr>
+                    <tr><td>⊨</td><td>\models</td><td>Models</td></tr>
+                    <tr><td>∴</td><td>\therefore</td><td>Therefore</td></tr>
+                    <tr><td>∵</td><td>\because</td><td>Because</td></tr>
+                </table>
+            </details>
+
+            <details>
+                <summary>Arrows (Complete Collection)</summary>
+                <table>
+                    <tr><th>Symbol</th><th>LaTeX</th><th>Description</th></tr>
+                    <tr><td>→</td><td>\to or \rightarrow</td><td>Right arrow</td></tr>
+                    <tr><td>←</td><td>\leftarrow or \gets</td><td>Left arrow</td></tr>
+                    <tr><td>↔</td><td>\leftrightarrow</td><td>Left-right arrow</td></tr>
+                    <tr><td>⇒</td><td>\Rightarrow or \implies</td><td>Implies</td></tr>
+                    <tr><td>⇐</td><td>\Leftarrow</td><td>Implied by</td></tr>
+                    <tr><td>⇔</td><td>\Leftrightarrow or \iff</td><td>If and only if</td></tr>
+                    <tr><td>↦</td><td>\mapsto</td><td>Maps to</td></tr>
+                    <tr><td>↑</td><td>\uparrow</td><td>Up arrow</td></tr>
+                    <tr><td>↓</td><td>\downarrow</td><td>Down arrow</td></tr>
+                    <tr><td>↕</td><td>\updownarrow</td><td>Up-down arrow</td></tr>
+                    <tr><td>⇑</td><td>\Uparrow</td><td>Double up arrow</td></tr>
+                    <tr><td>⇓</td><td>\Downarrow</td><td>Double down arrow</td></tr>
+                    <tr><td>⟶</td><td>\longrightarrow</td><td>Long right arrow</td></tr>
+                    <tr><td>⟵</td><td>\longleftarrow</td><td>Long left arrow</td></tr>
+                    <tr><td>⟷</td><td>\longleftrightarrow</td><td>Long left-right</td></tr>
+                    <tr><td>⟹</td><td>\Longrightarrow</td><td>Long implies</td></tr>
+                    <tr><td>⟸</td><td>\Longleftarrow</td><td>Long implied by</td></tr>
+                    <tr><td>⟺</td><td>\Longleftrightarrow</td><td>Long iff</td></tr>
+                    <tr><td>↗</td><td>\nearrow</td><td>Northeast arrow</td></tr>
+                    <tr><td>↘</td><td>\searrow</td><td>Southeast arrow</td></tr>
+                    <tr><td>↖</td><td>\nwarrow</td><td>Northwest arrow</td></tr>
+                    <tr><td>↙</td><td>\swarrow</td><td>Southwest arrow</td></tr>
+                    <tr><td>↪</td><td>\hookrightarrow</td><td>Hook right arrow</td></tr>
+                    <tr><td>↩</td><td>\hookleftarrow</td><td>Hook left arrow</td></tr>
+                    <tr><td>⇀</td><td>\rightharpoonup</td><td>Right harpoon up</td></tr>
+                    <tr><td>⇁</td><td>\rightharpoondown</td><td>Right harpoon down</td></tr>
+                    <tr><td>↼</td><td>\leftharpoonup</td><td>Left harpoon up</td></tr>
+                    <tr><td>↽</td><td>\leftharpoondown</td><td>Left harpoon down</td></tr>
+                    <tr><td>⇌</td><td>\rightleftharpoons</td><td>Right-left harpoons</td></tr>
+                </table>
+            </details>
+
+            <details>
+                <summary>Set Theory Symbols</summary>
+                <table>
+                    <tr><th>Symbol</th><th>LaTeX</th><th>Description</th></tr>
+                    <tr><td>∅</td><td>\emptyset or \varnothing</td><td>Empty set</td></tr>
+                    <tr><td>∈</td><td>\in</td><td>Element of</td></tr>
+                    <tr><td>∉</td><td>\notin</td><td>Not element of</td></tr>
+                    <tr><td>⊂</td><td>\subset</td><td>Subset</td></tr>
+                    <tr><td>⊆</td><td>\subseteq</td><td>Subset or equal</td></tr>
+                    <tr><td>⊊</td><td>\subsetneq</td><td>Proper subset</td></tr>
+                    <tr><td>⊃</td><td>\supset</td><td>Superset</td></tr>
+                    <tr><td>⊇</td><td>\supseteq</td><td>Superset or equal</td></tr>
+                    <tr><td>⊋</td><td>\supsetneq</td><td>Proper superset</td></tr>
+                    <tr><td>∪</td><td>\cup</td><td>Union</td></tr>
+                    <tr><td>∩</td><td>\cap</td><td>Intersection</td></tr>
+                    <tr><td>∖</td><td>\setminus</td><td>Set difference</td></tr>
+                    <tr><td>△</td><td>\triangle</td><td>Symmetric difference</td></tr>
+                    <tr><td>×</td><td>\times</td><td>Cartesian product</td></tr>
+                    <tr><td>⊎</td><td>\uplus</td><td>Disjoint union</td></tr>
+                </table>
+            </details>
+
+            <details>
+                <summary>Logic Symbols</summary>
+                <table>
+                    <tr><th>Symbol</th><th>LaTeX</th><th>Description</th></tr>
+                    <tr><td>¬</td><td>\neg or \lnot</td><td>Negation</td></tr>
+                    <tr><td>∧</td><td>\wedge or \land</td><td>Logical and</td></tr>
+                    <tr><td>∨</td><td>\vee or \lor</td><td>Logical or</td></tr>
+                    <tr><td>⊕</td><td>\oplus</td><td>XOR</td></tr>
+                    <tr><td>→</td><td>\to or \rightarrow</td><td>Implies</td></tr>
+                    <tr><td>⇒</td><td>\Rightarrow or \implies</td><td>Implies</td></tr>
+                    <tr><td>⇔</td><td>\Leftrightarrow or \iff</td><td>If and only if</td></tr>
+                    <tr><td>∀</td><td>\forall</td><td>For all</td></tr>
+                    <tr><td>∃</td><td>\exists</td><td>There exists</td></tr>
+                    <tr><td>∄</td><td>\nexists</td><td>Does not exist</td></tr>
+                    <tr><td>⊤</td><td>\top</td><td>True</td></tr>
+                    <tr><td>⊥</td><td>\bot</td><td>False</td></tr>
+                    <tr><td>⊢</td><td>\vdash</td><td>Proves</td></tr>
+                    <tr><td>⊨</td><td>\models</td><td>Models</td></tr>
+                </table>
+            </details>
+
+            <details>
+                <summary>Calculus Symbols</summary>
+                <table>
+                    <tr><th>Symbol</th><th>LaTeX</th><th>Description</th></tr>
+                    <tr><td>∞</td><td>\infty</td><td>Infinity</td></tr>
+                    <tr><td>∂</td><td>\partial</td><td>Partial derivative</td></tr>
+                    <tr><td>∇</td><td>\nabla</td><td>Nabla, gradient</td></tr>
+                    <tr><td>∫</td><td>\int</td><td>Integral</td></tr>
+                    <tr><td>∬</td><td>\iint</td><td>Double integral</td></tr>
+                    <tr><td>∭</td><td>\iiint</td><td>Triple integral</td></tr>
+                    <tr><td>∮</td><td>\oint</td><td>Contour integral</td></tr>
+                    <tr><td>∑</td><td>\sum</td><td>Summation</td></tr>
+                    <tr><td>∏</td><td>\prod</td><td>Product</td></tr>
+                    <tr><td>∐</td><td>\coprod</td><td>Coproduct</td></tr>
+                    <tr><td>lim</td><td>\lim</td><td>Limit</td></tr>
+                    <tr><td>sup</td><td>\sup</td><td>Supremum</td></tr>
+                    <tr><td>inf</td><td>\inf</td><td>Infimum</td></tr>
+                </table>
+            </details>
+
+            <details>
+                <summary>Dots and Ellipses</summary>
+                <table>
+                    <tr><th>Symbol</th><th>LaTeX</th><th>Description</th></tr>
+                    <tr><td>…</td><td>\dots or \ldots</td><td>Low dots</td></tr>
+                    <tr><td>⋯</td><td>\cdots</td><td>Centered dots</td></tr>
+                    <tr><td>⋮</td><td>\vdots</td><td>Vertical dots</td></tr>
+                    <tr><td>⋱</td><td>\ddots</td><td>Diagonal dots</td></tr>
+                    <tr><td>⋰</td><td>\iddots</td><td>Inverse diagonal</td></tr>
+                </table>
+                <pre><code>$a_1, a_2, \ldots, a_n$  % Commas
+$a_1 + a_2 + \cdots + a_n$  % Operators
+$\begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix}$</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <details>
+                <summary>Special Characters and Symbols</summary>
+                <table>
+                    <tr><th>Symbol</th><th>LaTeX</th><th>Description</th></tr>
+                    <tr><td>ℵ</td><td>\aleph</td><td>Aleph (cardinality)</td></tr>
+                    <tr><td>ℏ</td><td>\hbar</td><td>Reduced Planck const</td></tr>
+                    <tr><td>ı</td><td>\imath</td><td>Dotless i</td></tr>
+                    <tr><td>ȷ</td><td>\jmath</td><td>Dotless j</td></tr>
+                    <tr><td>ℓ</td><td>\ell</td><td>Cursive l</td></tr>
+                    <tr><td>℘</td><td>\wp</td><td>Weierstrass p</td></tr>
+                    <tr><td>ℜ</td><td>\Re</td><td>Real part</td></tr>
+                    <tr><td>ℑ</td><td>\Im</td><td>Imaginary part</td></tr>
+                    <tr><td>∠</td><td>\angle</td><td>Angle</td></tr>
+                    <tr><td>△</td><td>\triangle</td><td>Triangle</td></tr>
+                    <tr><td>□</td><td>\square</td><td>Square</td></tr>
+                    <tr><td>◊</td><td>\diamond</td><td>Diamond</td></tr>
+                    <tr><td>♭</td><td>\flat</td><td>Flat (music)</td></tr>
+                    <tr><td>♮</td><td>\natural</td><td>Natural (music)</td></tr>
+                    <tr><td>♯</td><td>\sharp</td><td>Sharp (music)</td></tr>
+                    <tr><td>†</td><td>\dagger</td><td>Dagger</td></tr>
+                    <tr><td>‡</td><td>\ddagger</td><td>Double dagger</td></tr>
+                    <tr><td>♣</td><td>\clubsuit</td><td>Club</td></tr>
+                    <tr><td>♦</td><td>\diamondsuit</td><td>Diamond</td></tr>
+                    <tr><td>♥</td><td>\heartsuit</td><td>Heart</td></tr>
+                    <tr><td>♠</td><td>\spadesuit</td><td>Spade</td></tr>
+                </table>
+            </details>
+
+            <h3>Physics and Engineering Symbols</h3>
+            <pre><code>\usepackage{physics}
+\usepackage{siunitx}
+
+% Vector notation
+$\vb{v}$  % Bold vector
+$\va{v}$  % Arrow vector
+$\vu{v}$  % Unit vector
+
+% Derivatives
+\dv{f}{x}      % df/dx
+\pdv{f}{x}     % ∂f/∂x
+\dv[2]{f}{x}   % d²f/dx²
+\pdv{f}{x}{y}  % ∂²f/∂x∂y
+
+% Brackets
+\abs{x}        % |x|
+\norm{v}       % ||v||
+\order{x^2}    % O(x²)
+
+% Units with siunitx
+\SI{3.5}{\meter\per\second}
+\SI{100}{\celsius}
+\SI{5}{\newton\meter}
+\num{1.23e-4}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 5: TABLES -->
+        <section id="section5">
+            <h2>5. Tables</h2>
+
+            <h3>Basic Tables</h3>
+            <pre><code>\begin{tabular}{|l|c|r|}
+\hline
+Left & Center & Right \\
+\hline
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+\hline
+\end{tabular}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Column Alignment</h3>
+            <pre><code>% l = left, c = center, r = right
+% p{width} = paragraph column with fixed width
+% | = vertical line
+% || = double vertical line
+
+\begin{tabular}{lcr}        % No borders
+Left & Center & Right \\
+\end{tabular}
+
+\begin{tabular}{|l|c|r|}    % With borders
+\hline
+Left & Center & Right \\
+\hline
+\end{tabular}
+
+\begin{tabular}{p{3cm}p{5cm}}  % Fixed width
+Long text & More text \\
+\end{tabular}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Multirow and Multicolumn</h3>
+            <pre><code>\usepackage{multirow}
+
+\begin{tabular}{|l|c|c|}
+\hline
+\multicolumn{3}{|c|}{Combined Header} \\
+\hline
+A & B & C \\
+\hline
+\multirow{2}{*}{Span} & 1 & 2 \\
+                      & 3 & 4 \\
+\hline
+\end{tabular}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>Professional Tables with Booktabs</summary>
+                <pre><code>\usepackage{booktabs}
+
+\begin{table}[htbp]
+\centering
+\caption{Professional Table}
+\label{tab:prof}
+\begin{tabular}{lcc}
+\toprule
+Item & Value 1 & Value 2 \\
+\midrule
+Alpha & 1.23 & 4.56 \\
+Beta  & 7.89 & 0.12 \\
+Gamma & 3.45 & 6.78 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Rules:
+% - Never use vertical lines
+% - Use \toprule, \midrule, \bottomrule
+% - Don't use \hline
+% - Add space between rows if needed: \\[0.5em]</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Long Tables (Multi-page)</h3>
+            <pre><code>\usepackage{longtable}
+
+\begin{longtable}{lcc}
+\caption{Long Table Example} \label{tab:long} \\
+\toprule
+Column 1 & Column 2 & Column 3 \\
+\midrule
+\endfirsthead
+
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- Continued from previous page} \\
+\toprule
+Column 1 & Column 2 & Column 3 \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{r}{Continued on next page} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+Row 1 & Data & Data \\
+Row 2 & Data & Data \\
+% ... many rows ...
+\end{longtable}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Tabularx (Auto-width)</h3>
+            <pre><code>\usepackage{tabularx}
+
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+Short & Long column that expands & Another expanding \\
+\midrule
+A & This text will wrap automatically to fill space & More text \\
+B & Content & Content \\
+\bottomrule
+\end{tabularx}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Colored Tables</h3>
+            <pre><code>\usepackage{colortbl}
+\usepackage{xcolor}
+
+\begin{tabular}{lcc}
+\rowcolor{gray!30}
+Header 1 & Header 2 & Header 3 \\
+\rowcolor{blue!10}
+Data 1 & Data 2 & Data 3 \\
+Data 4 & \cellcolor{red!20}Data 5 & Data 6 \\
+\end{tabular}
+
+% Alternating row colors
+\rowcolors{2}{white}{gray!15}
+\begin{tabular}{lcc}
+Header & Column 2 & Column 3 \\
+Row 1 & ... & ... \\
+Row 2 & ... & ... \\
+Row 3 & ... & ... \\
+\end{tabular}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Table Positioning</h3>
+            <pre><code>% Float specifiers:
+% h = here (approximately)
+% t = top of page
+% b = bottom of page
+% p = separate page
+% ! = override internal parameters
+% H = EXACTLY here (requires float package)
+
+\begin{table}[htbp]
+\centering
+\caption{Table caption above}
+\begin{tabular}{cc}
+A & B \\
+C & D \\
+\end{tabular}
+\label{tab:mytable}
+\end{table}
+
+% Caption below (common in some fields)
+\begin{table}[htbp]
+\centering
+\begin{tabular}{cc}
+A & B \\
+C & D \\
+\end{tabular}
+\caption{Table caption below}
+\label{tab:another}
+\end{table}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Rotated Tables</h3>
+            <pre><code>\usepackage{rotating}
+
+% Rotate entire table
+\begin{sidewaystable}
+\centering
+\caption{Rotated Table}
+\begin{tabular}{lccccc}
+... wide table ...
+\end{tabular}
+\end{sidewaystable}
+
+% Rotate cell content
+\usepackage{graphicx}
+\rotatebox{90}{Vertical text}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 6: FIGURES & FLOATS -->
+        <section id="section6">
+            <h2>6. Figures & Floats</h2>
+
+            <h3>Including Images</h3>
+            <pre><code>\usepackage{graphicx}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{image.png}
+\caption{Image caption}
+\label{fig:myimage}
+\end{figure}
+
+% Reference
+See Figure~\ref{fig:myimage} on page~\pageref{fig:myimage}.</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Image Sizing and Scaling</h3>
+            <pre><code>% Width
+\includegraphics[width=5cm]{image}
+\includegraphics[width=0.5\textwidth]{image}
+\includegraphics[width=\linewidth]{image}
+
+% Height
+\includegraphics[height=4cm]{image}
+
+% Scale
+\includegraphics[scale=0.75]{image}
+
+% Keep aspect ratio with max dimensions
+\includegraphics[width=10cm,height=8cm,keepaspectratio]{image}
+
+% Rotation
+\includegraphics[angle=90]{image}
+\includegraphics[angle=45,scale=0.5]{image}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Subfigures</h3>
+            <pre><code>\usepackage{subcaption}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{image1}
+    \caption{First subfigure}
+    \label{fig:sub1}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{image2}
+    \caption{Second subfigure}
+    \label{fig:sub2}
+\end{subfigure}
+\caption{Overall caption}
+\label{fig:overall}
+\end{figure}
+
+% Reference: Figure~\ref{fig:sub1} shows...</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Wrapping Text Around Figures</h3>
+            <pre><code>\usepackage{wrapfig}
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+\centering
+\includegraphics[width=0.38\textwidth]{image}
+\caption{Wrapped figure}
+\end{wrapfigure}
+
+Lorem ipsum text flows around the figure...
+
+% Options: l=left, r=right, i=inside, o=outside</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Figure Placement Control</h3>
+            <pre><code>% Force figure placement
+\usepackage{float}
+\begin{figure}[H]  % Exactly here
+\centering
+\includegraphics{image}
+\caption{Figure exactly here}
+\end{figure}
+
+% Clear all floats before continuing
+\clearpage
+
+% Adjust float parameters
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.85}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>TikZ Graphics Basics</summary>
+                <pre><code>\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+% Simple drawing
+\begin{tikzpicture}
+\draw (0,0) -- (2,2);
+\draw (0,0) circle (1cm);
+\fill[red] (1,1) rectangle (2,2);
+\end{tikzpicture}
+
+% Nodes and arrows
+\begin{tikzpicture}[node distance=2cm]
+\node[draw,circle] (A) {A};
+\node[draw,circle] (B) [right of=A] {B};
+\node[draw,circle] (C) [below of=A] {C};
+\draw[->] (A) -- (B);
+\draw[->] (A) -- (C);
+\draw[->] (B) -- (C);
+\end{tikzpicture}
+
+% Plot
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel=$x$,
+    ylabel=$f(x)$
+]
+\addplot[blue,domain=-2:2] {x^2};
+\end{axis}
+\end{tikzpicture}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Side-by-side Figures</h3>
+            <pre><code>% Using minipage
+\begin{figure}[htbp]
+\centering
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{img1}
+    \caption{First}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{img2}
+    \caption{Second}
+\end{minipage}
+\end{figure}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 7: LISTS -->
+        <section id="section7">
+            <h2>7. Lists</h2>
+
+            <h3>Itemize (Bulleted List)</h3>
+            <pre><code>\begin{itemize}
+\item First item
+\item Second item
+\item Third item
+\end{itemize}
+
+% Custom bullets
+\begin{itemize}
+\item[$\star$] Star bullet
+\item[$\circ$] Circle bullet
+\item[$\checkmark$] Checkmark
+\end{itemize}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Enumerate (Numbered List)</h3>
+            <pre><code>\begin{enumerate}
+\item First item
+\item Second item
+\item Third item
+\end{enumerate}
+
+% Custom numbering
+\begin{enumerate}[(a)]  % requires enumerate package
+\item Item a
+\item Item b
+\end{enumerate}
+
+% With enumitem package
+\usepackage{enumitem}
+\begin{enumerate}[label=(\roman*)]
+\item First (i)
+\item Second (ii)
+\end{enumerate}
+
+\begin{enumerate}[label=\Alph*.]
+\item First A.
+\item Second B.
+\end{enumerate}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Description Lists</h3>
+            <pre><code>\begin{description}
+\item[Term 1] Definition of term 1
+\item[Term 2] Definition of term 2
+\item[Longer Term] Definition of longer term
+\end{description}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Nested Lists</h3>
+            <pre><code>\begin{enumerate}
+\item First level
+    \begin{enumerate}
+    \item Second level
+        \begin{enumerate}
+        \item Third level
+        \item Another third
+        \end{enumerate}
+    \item Back to second
+    \end{enumerate}
+\item Back to first
+\end{enumerate}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Compact Lists</h3>
+            <pre><code>\usepackage{enumitem}
+
+% No spacing
+\begin{itemize}[noitemsep]
+\item Item 1
+\item Item 2
+\end{itemize}
+
+% No spacing and no indent
+\begin{itemize}[noitemsep,leftmargin=*]
+\item Item 1
+\item Item 2
+\end{itemize}
+
+% Custom spacing
+\begin{itemize}[itemsep=0.5em]
+\item Item 1
+\item Item 2
+\end{itemize}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Inline Lists</h3>
+            <pre><code>\usepackage{paralist}
+
+Text before list
+\begin{inparaenum}[(1)]
+\item first,
+\item second, and
+\item third
+\end{inparaenum}
+items in a sentence.
+
+% Or with enumitem
+\usepackage[inline]{enumitem}
+\begin{enumerate*}[label=(\alph*)]
+\item first
+\item second
+\item third
+\end{enumerate*}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 8: REFERENCES & BIBLIOGRAPHY -->
+        <section id="section8">
+            <h2>8. References & Bibliography</h2>
+
+            <h3>BibTeX Basics</h3>
+            <pre><code>% In your .bib file (references.bib):
+@article{einstein1905,
+    author = "Albert Einstein",
+    title = "On the electrodynamics of moving bodies",
+    journal = "Annalen der Physik",
+    volume = "17",
+    pages = "891--921",
+    year = "1905"
+}
+
+@book{knuth1984,
+    author = "Donald E. Knuth",
+    title = "The TeXbook",
+    publisher = "Addison-Wesley",
+    year = "1984"
+}
+
+% In your .tex file:
+\cite{einstein1905}
+\cite{knuth1984}
+
+\bibliographystyle{plain}
+\bibliography{references}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>BibTeX Entry Types</summary>
+                <pre><code>@article{...}       % Journal article
+@book{...}          % Book
+@inproceedings{...} % Conference paper
+@incollection{...}  % Chapter in book
+@mastersthesis{...} % Master's thesis
+@phdthesis{...}     % PhD thesis
+@techreport{...}    % Technical report
+@manual{...}        % Manual
+@misc{...}          % Miscellaneous
+@unpublished{...}   % Unpublished work
+@online{...}        % Online resource
+
+% Common fields:
+% author, title, year, journal, volume, number
+% pages, publisher, address, editor, booktitle
+% institution, school, note, doi, url</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Citation Styles</h3>
+            <pre><code>% Numeric
+\bibliographystyle{plain}    % [1], [2], [3]
+\bibliographystyle{unsrt}    % Unsorted by appearance
+\bibliographystyle{alpha}    % [Ein05], [Knu84]
+\bibliographystyle{abbrv}    % Abbreviated names
+
+% Author-year (requires natbib)
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+\bibliographystyle{abbrvnat}
+\bibliographystyle{unsrtnat}
+
+% Usage:
+\citet{einstein1905}   % Einstein (1905)
+\citep{einstein1905}   % (Einstein, 1905)
+\citet*{einstein1905}  % Einstein, A. (1905)
+\citep*{einstein1905}  % (Einstein, A., 1905)</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>BibLaTeX (Modern Alternative)</h3>
+            <pre><code>\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{references.bib}
+
+% Citation commands
+\cite{key}
+\textcite{key}     % Author (year)
+\parencite{key}    % (Author year)
+\footcite{key}     % Footnote citation
+\autocite{key}     % Style-dependent
+
+% Multiple citations
+\cite{key1,key2,key3}
+
+% Print bibliography
+\printbibliography
+
+% Compile with: pdflatex → biber → pdflatex → pdflatex</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Cross-References</h3>
+            <pre><code>% Labels
+\section{Introduction}\label{sec:intro}
+\begin{equation}\label{eq:main}
+E = mc^2
+\end{equation}
+\begin{figure}\label{fig:plot}
+...
+\end{figure}
+\begin{table}\label{tab:data}
+...
+\end{table}
+
+% References
+See Section~\ref{sec:intro}
+Equation~\eqref{eq:main}  % With parentheses (1)
+Figure~\ref{fig:plot}
+Table~\ref{tab:data}
+Page~\pageref{sec:intro}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Hyperlinks</h3>
+            <pre><code>\usepackage{hyperref}
+\usepackage{url}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=green,
+    urlcolor=cyan,
+    pdftitle={My Document},
+    pdfauthor={Author Name}
+}
+
+% URLs
+\url{https://www.example.com}
+\href{https://www.example.com}{Link text}
+
+% Email
+\href{mailto:user@example.com}{user@example.com}
+
+% Internal links
+\hyperref[sec:intro]{Introduction section}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Footnotes and Endnotes</h3>
+            <pre><code>% Footnotes
+This is text\footnote{This is a footnote}.
+
+% Custom footnote mark
+This is text\footnotemark
+\footnotetext{Footnote text elsewhere}
+
+% Endnotes (requires endnotes package)
+\usepackage{endnotes}
+This is text\endnote{This is an endnote}.
+% At end of document:
+\theendnotes</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 9: PAGE LAYOUT -->
+        <section id="section9">
+            <h2>9. Page Layout</h2>
+
+            <h3>Margins</h3>
+            <pre><code>\usepackage{geometry}
+
+% Simple margins
+\geometry{margin=1in}
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+
+% Different left/right for binding
+\geometry{left=3cm, right=2cm, top=2.5cm, bottom=2.5cm}
+
+% Paper size
+\geometry{a4paper}
+\geometry{letterpaper}
+\geometry{landscape}
+
+% Advanced
+\geometry{
+    paper=a4paper,
+    inner=2.5cm,
+    outer=2cm,
+    top=3cm,
+    bottom=3cm,
+    includeheadfoot
+}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Headers and Footers</h3>
+            <pre><code>\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}  % Clear all fields
+
+% Headers
+\fancyhead[L]{Left Header}
+\fancyhead[C]{Center Header}
+\fancyhead[R]{Right Header}
+
+% Footers
+\fancyfoot[L]{Left Footer}
+\fancyfoot[C]{\thepage}  % Page number
+\fancyfoot[R]{Right Footer}
+
+% Two-sided documents
+\fancyhead[LE,RO]{Outside}  % Left-Even, Right-Odd
+\fancyhead[RE,LO]{Inside}   % Right-Even, Left-Odd
+
+% Header/footer line width
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Chapter pages
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Page Numbering</h3>
+            <pre><code>% Numbering styles
+\pagenumbering{arabic}     % 1, 2, 3
+\pagenumbering{roman}      % i, ii, iii
+\pagenumbering{Roman}      % I, II, III
+\pagenumbering{alph}       % a, b, c
+\pagenumbering{Alph}       % A, B, C
+
+% Start numbering from specific page
+\setcounter{page}{1}
+
+% No page number on current page
+\thispagestyle{empty}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Multi-column Layout</h3>
+            <pre><code>\usepackage{multicol}
+
+% Two-column
+\begin{multicols}{2}
+Text in two columns...
+\end{multicols}
+
+% Three-column
+\begin{multicols}{3}
+Text in three columns...
+\end{multicols}
+
+% Column break
+\columnbreak
+
+% Spanning figures
+\begin{figure*}
+% Figure spans all columns
+\end{figure*}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Landscape Pages</h3>
+            <pre><code>\usepackage{pdflscape}
+
+\begin{landscape}
+% Content in landscape orientation
+\begin{table}
+...wide table...
+\end{table}
+\end{landscape}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Watermarks</h3>
+            <pre><code>\usepackage{draftwatermark}
+
+% Simple watermark
+\SetWatermarkText{DRAFT}
+\SetWatermarkScale{1}
+\SetWatermarkColor[gray]{0.9}
+
+% Custom watermark
+\SetWatermarkText{Confidential}
+\SetWatermarkAngle{45}
+\SetWatermarkScale{4}
+
+% Background package
+\usepackage{background}
+\backgroundsetup{
+    scale=1,
+    color=black,
+    opacity=0.1,
+    angle=0,
+    contents={DRAFT}
+}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 10: COLORS & GRAPHICS -->
+        <section id="section10">
+            <h2>10. Colors & Graphics</h2>
+
+            <h3>Color Basics</h3>
+            <pre><code>\usepackage{xcolor}
+
+% Named colors
+\textcolor{red}{Red text}
+\textcolor{blue}{Blue text}
+\textcolor{green}{Green text}
+
+% RGB
+\definecolor{mycolor}{RGB}{255,128,0}
+\textcolor{mycolor}{Custom color}
+
+% HTML colors
+\definecolor{webcolor}{HTML}{FF8000}
+
+% Gray
+\textcolor{black!50}{50% black}
+\textcolor{blue!30}{30% blue}
+
+% Mix colors
+\textcolor{red!70!blue}{70% red, 30% blue}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Background Color</h3>
+            <pre><code>% Color box
+\colorbox{yellow}{Text with yellow background}
+\colorbox{blue!20}{Light blue background}
+
+% Frame with color
+\fcolorbox{red}{yellow}{Frame and background}
+
+% Page background
+\pagecolor{yellow}
+% Reset
+\pagecolor{white}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Boxes and Frames</h3>
+            <pre><code>% Basic boxes
+\mbox{Text in a box}
+\fbox{Text with frame}
+\framebox[5cm]{Text in 5cm box}
+
+% Parbox (paragraph box)
+\parbox{5cm}{
+Paragraph text that wraps
+within the 5cm width.
+}
+
+% Minipage
+\begin{minipage}{0.5\textwidth}
+Content in minipage...
+\end{minipage}
+
+% Framed text
+\usepackage{framed}
+\begin{framed}
+Framed content
+\end{framed}
+
+% Shaded
+\begin{shaded}
+Shaded background
+\end{shaded}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>Advanced Box Packages</summary>
+                <pre><code>% tcolorbox - sophisticated boxes
+\usepackage{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!5,colframe=blue!40!black,title=My Box]
+Beautiful colored box with title
+\end{tcolorbox}
+
+% mdframed - customizable frames
+\usepackage{mdframed}
+
+\begin{mdframed}[linecolor=red,linewidth=2pt]
+Custom framed content
+\end{mdframed}
+
+% fancybox - decorative boxes
+\usepackage{fancybox}
+
+\shadowbox{Text with shadow}
+\doublebox{Text with double border}
+\ovalbox{Text in oval}
+\Ovalbox{Text in thick oval}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Highlighting</h3>
+            <pre><code>\usepackage{soul}
+
+% Highlighting
+\hl{Highlighted text}
+
+% Custom highlight color
+\usepackage{color,soul}
+\sethlcolor{yellow}
+\hl{Yellow highlight}
+
+% Strikethrough
+\st{Crossed out text}
+
+% Underline
+\ul{Underlined text}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 11: CODE & ALGORITHMS -->
+        <section id="section11">
+            <h2>11. Code & Algorithms</h2>
+
+            <h3>Listings Package</h3>
+            <pre><code>\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    frame=single,
+    breaklines=true,
+    showstringspaces=false
+}
+
+\begin{lstlisting}
+def hello_world():
+    print("Hello, World!")
+\end{lstlisting}
+
+% Inline code
+\lstinline|x = 5|
+
+% From file
+\lstinputlisting[language=Python]{code.py}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Minted (Syntax Highlighting)</h3>
+            <pre><code>\usepackage{minted}
+
+% Requires Python Pygments installed
+% Compile with: pdflatex -shell-escape file.tex
+
+\begin{minted}{python}
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n-1)
+\end{minted}
+
+% Inline
+\mintinline{python}{x = 5}
+
+% With options
+\begin{minted}[
+    linenos,
+    bgcolor=bg,
+    fontsize=\small
+]{java}
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello");
+    }
+}
+\end{minted}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <details>
+                <summary>Algorithm Packages</summary>
+                <h4>algorithm2e</h4>
+                <pre><code>\usepackage[ruled,vlined]{algorithm2e}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{this text}
+\KwResult{how to write algorithm with \LaTeX2e }
+initialization\;
+\While{not at end of this document}{
+    read current\;
+    \eIf{understand}{
+        go to next section\;
+        current section becomes this one\;
+    }{
+        go back to the beginning of current section\;
+    }
+}
+\caption{How to write algorithms}
+\end{algorithm}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>algorithmicx</h4>
+                <pre><code>\usepackage{algpseudocode}
+\usepackage{algorithm}
+
+\begin{algorithm}
+\caption{Euclid's algorithm}
+\begin{algorithmic}[1]
+\Procedure{Euclid}{$a,b$}
+    \State $r\gets a\bmod b$
+    \While{$r\not=0$}
+        \State $a\gets b$
+        \State $b\gets r$
+        \State $r\gets a\bmod b$
+    \EndWhile
+    \State \textbf{return} $b$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Pseudocode Keywords</h4>
+                <pre><code>% algorithmicx keywords
+\State, \If, \ElsIf, \Else, \EndIf
+\For, \ForAll, \EndFor
+\While, \EndWhile
+\Repeat, \Until
+\Loop, \EndLoop
+\Require  % Input
+\Ensure   % Output
+\Function, \EndFunction
+\Procedure, \EndProcedure
+\Call{FunctionName}{args}
+\Return
+\Comment{text}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+            </details>
+
+            <h3>Verbatim Environments</h3>
+            <pre><code>% Basic verbatim
+\begin{verbatim}
+Exact text with    spaces
+and special characters: $ \ # % & ~
+\end{verbatim}
+
+% Inline
+\verb|$x = 5$|
+\verb+#include <stdio.h>+
+
+% Verbatim with line breaks
+\begin{verbatim*}
+Shows spaces as ␣
+\end{verbatim*}
+
+% fancyvrb package
+\usepackage{fancyvrb}
+\begin{Verbatim}[numbers=left,frame=single]
+Code with line numbers
+\end{Verbatim}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Line Numbering</h3>
+            <pre><code>\usepackage{lineno}
+
+% Enable line numbers
+\linenumbers
+
+% Line numbers in specific environments
+\begin{linenumbers}
+Text with line numbers.
+Multiple lines.
+\end{linenumbers}
+
+% Customize
+\setlength\linenumbersep{3pt}
+\renewcommand\linenumberfont{\normalfont\tiny\sffamily}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 12: ADVANCED FEATURES -->
+        <section id="section12">
+            <h2>12. Advanced Features</h2>
+
+            <h3>Custom Commands</h3>
+            <pre><code>% Define new command
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left| #1 \right|}
+
+% With optional argument
+\newcommand{\derivative}[2][x]{\frac{d#2}{d#1}}
+% Usage: \derivative{y} or \derivative[t]{y}
+
+% Renew existing command
+\renewcommand{\arraystretch}{1.5}
+
+% Multiple arguments
+\newcommand{\fracsum}[3]{\frac{\sum_{#1}^{#2} #3}{#2-#1+1}}
+% Usage: \fracsum{i=1}{n}{x_i}
+
+% Command with star variant
+\newcommand{\highlight}[1]{\textbf{\color{red}#1}}
+\newcommand{\highlight*}[1]{\textit{\color{blue}#1}}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Custom Environments</h3>
+            <pre><code>% Simple environment
+\newenvironment{myquote}
+    {\begin{quotation}\itshape}
+    {\end{quotation}}
+
+% With parameters
+\newenvironment{colorbox}[1]
+    {\begin{center}\color{#1}\rule{\linewidth}{2pt}\par}
+    {\par\rule{\linewidth}{2pt}\end{center}}
+
+% Usage
+\begin{colorbox}{blue}
+Content goes here
+\end{colorbox}
+
+% Complex environment with before/after code
+\newenvironment{solution}[1][Solution]
+    {\begin{trivlist}\item[\hskip\labelsep\textbf{#1:}]}
+    {\end{trivlist}}
+
+% Theorem-like environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{proposition}{Proposition}[section]
+
+% Definition and examples
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
+% Remarks
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{note}{Note}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Counters</h3>
+            <pre><code>% Create new counter
+\newcounter{mycounter}
+\setcounter{mycounter}{0}
+
+% Modify counter
+\stepcounter{mycounter}
+\addtocounter{mycounter}{5}
+\setcounter{mycounter}{10}
+
+% Display counter
+\themycounter
+\arabic{mycounter}  % 1, 2, 3
+\roman{mycounter}   % i, ii, iii
+\Roman{mycounter}   % I, II, III
+\alph{mycounter}    % a, b, c
+\Alph{mycounter}    % A, B, C
+
+% Counter dependency
+\newcounter{subcounter}[mycounter]  % Resets when mycounter changes
+
+% Use in custom commands
+\newcommand{\myitem}{%
+    \stepcounter{mycounter}%
+    \textbf{Item \themycounter:}}
+
+% Built-in counters
+page, equation, figure, table, section, subsection
+footnote, enumi, enumii, enumiii</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Conditionals</h3>
+            <pre><code>% ifthen package
+\usepackage{ifthen}
+
+\newcommand{\grade}[1]{%
+    \ifthenelse{\equal{#1}{A}}{Excellent}{}%
+    \ifthenelse{\equal{#1}{B}}{Good}{}%
+    \ifthenelse{\equal{#1}{C}}{Average}{}%
+    \ifthenelse{\equal{#1}{D}}{Poor}{}%
+}
+
+% Numeric comparison
+\newcounter{mynum}
+\setcounter{mynum}{5}
+\ifthenelse{\value{mynum}>3}{Greater than 3}{Not greater}
+
+% Boolean conditions
+\newboolean{showsolutions}
+\setboolean{showsolutions}{true}
+
+\ifthenelse{\boolean{showsolutions}}{
+    % Show solutions
+    \input{solutions}
+}{
+    % Hide solutions
+}
+
+% etoolbox package (more powerful)
+\usepackage{etoolbox}
+
+\ifstrequal{string1}{string2}{true}{false}
+\ifnumequal{1}{1}{true}{false}
+\ifdef{\command}{defined}{not defined}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Loops</h3>
+            <pre><code>% pgffor package
+\usepackage{pgffor}
+
+% Simple loop
+\foreach \i in {1,2,3,4,5} {
+    Item \i.
+}
+
+% With step
+\foreach \i in {0,2,...,10} {
+    \i\quad
+}
+
+% Nested loops
+\foreach \x in {1,2,3} {
+    \foreach \y in {a,b,c} {
+        (\x,\y)
+    }
+}
+
+% Loop with list
+\foreach \name/\age in {Alice/25, Bob/30, Charlie/35} {
+    \name\ is \age\ years old.
+}
+
+% multido package
+\usepackage{multido}
+
+\multido{\i=1+1}{10}{Item \i. }
+\multido{\n=0.0+0.1}{11}{$x=\n$ }</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Package Creation Basics</h3>
+            <pre><code>% Create mypackage.sty file
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mypackage}[2026/01/02 My Custom Package]
+
+% Package options
+\DeclareOption{draft}{\def\@draft{true}}
+\DeclareOption{final}{\def\@draft{false}}
+\ProcessOptions\relax
+
+% Required packages
+\RequirePackage{amsmath}
+\RequirePackage{graphicx}
+
+% Commands
+\newcommand{\mycommand}[1]{\textbf{#1}}
+
+% At begin/end document
+\AtBeginDocument{%
+    % Code executed at document start
+}
+
+\AtEndDocument{%
+    % Code executed at document end
+}
+
+\endinput</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Class Creation Basics</h3>
+            <pre><code>% Create myclass.cls file
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{myclass}[2026/01/02 My Custom Class]
+
+% Base class
+\LoadClass[12pt,a4paper]{article}
+
+% Options
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions\relax
+
+% Packages
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+
+% Page setup
+\geometry{margin=1in}
+
+% Custom title
+\renewcommand{\maketitle}{%
+    \begin{center}
+        {\LARGE\bfseries\@title}\\[1ex]
+        {\large\@author}\\[0.5ex]
+        \@date
+    \end{center}
+}
+
+\endinput</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Error Handling and Messages</h3>
+            <pre><code>% Warning message
+\PackageWarning{mypackage}{This is a warning}
+
+% Error message
+\PackageError{mypackage}{Error description}{Help text}
+
+% Info message
+\PackageInfo{mypackage}{Information message}
+
+% Conditional error
+\@ifundefined{command}{
+    \PackageError{mypackage}{Command not defined}{}
+}{}
+
+% Stop compilation
+\usepackage{l3keys2e}
+\msg_error:nn { mypackage } { error-name }</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Debugging Tips</h3>
+            <pre><code>% Show values
+\typeout{Value of counter: \themycounter}
+\showthe\textwidth
+
+% Trace
+\tracingmacros=1
+\tracingcommands=1
+
+% Check if command exists
+\ifcsname mycommand\endcsname
+    Command exists
+\else
+    Command does not exist
+\fi
+
+% Draft mode - show overfull boxes
+\documentclass[draft]{article}
+
+% Display all labels
+\usepackage{showkeys}
+
+% Show frames
+\usepackage{showframe}
+
+% Log file verbosity
+\errorcontextlines=10
+
+% Check package version
+\listfiles  % Add to preamble</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 13: SPECIALIZED DOMAINS -->
+        <section id="section13">
+            <h2>13. Specialized Domains</h2>
+
+            <h3>Physics</h3>
+            <pre><code>% physics package
+\usepackage{physics}
+
+% Derivatives
+\dv{x}         % d/dx
+\dv{f}{x}      % df/dx
+\dv[2]{f}{x}   % d²f/dx²
+\pdv{f}{x}     % ∂f/∂x
+\pdv{f}{x}{y}  % ∂²f/∂x∂y
+
+% Vectors and matrices
+\vb{v}         % Bold vector
+\vb*{v}        % Arrow vector
+\va{a}         % Velocity
+\vu{n}         % Unit vector
+\grad, \div, \curl
+\laplacian
+
+% Brackets
+\abs{x}        % |x|
+\norm{x}       % ||x||
+\bra{\psi}     % ⟨ψ|
+\ket{\phi}     % |φ⟩
+\braket{a}{b}  % ⟨a|b⟩
+\ketbra{a}{b}  % |a⟩⟨b|
+\mel{a}{H}{b}  % ⟨a|H|b⟩ (matrix element)
+
+% Other
+\tr{A}         % Trace
+\rank{M}       % Rank
+\det{A}        % Determinant
+\Res{f}        % Residue
+
+% Units with siunitx
+\usepackage{siunitx}
+\SI{10}{\meter\per\second}
+\SI{3e8}{\meter\per\second}
+\SI{1.6e-19}{\coulomb}
+\num{1.23e-4}
+\ang{30}       % Angle
+
+% Physical constants
+\usepackage{physics}
+\usepackage{physconst}
+% Access via macros after definition</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Chemistry</h3>
+            <pre><code>% chemfig package
+\usepackage{chemfig}
+
+% Simple molecules
+\chemfig{H-O-H}           % Water
+\chemfig{H-C(-[2]H)(-[6]H)-H}  % Methane
+
+% Benzene ring
+\chemfig{*6(=-=-=-)}
+
+% With substituents
+\chemfig{*6(-=-=-(-OH)=)}  % Phenol
+
+% mhchem package (chemical equations)
+\usepackage[version=4]{mhchem}
+
+\ce{H2O}
+\ce{H2SO4}
+\ce{CO2 + H2O -> H2CO3}
+\ce{2H2 + O2 -> 2H2O}
+\ce{^{227}_{90}Th+}        % Isotope notation
+
+% States of matter
+\ce{H2O (l)}
+\ce{NaCl (s)}
+\ce{O2 (g)}
+\ce{Na+ (aq)}
+
+% Arrows
+\ce{A <=>[H+][OH-] B}
+\ce{A <=> B}
+\ce{A -> B}
+\ce{A <-> B}
+
+% chemformula package
+\usepackage{chemformula}
+
+\ch{H2SO4}
+\ch{"\stm{2}" H2 + O2 -> "\stm{2}" H2O}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Electrical Engineering</h3>
+            <pre><code>% circuitikz package
+\usepackage{circuitikz}
+
+\begin{circuitikz}
+% Resistor
+\draw (0,0) to[R=$R_1$] (2,0);
+
+% Capacitor
+\draw (0,0) to[C=$C_1$] (2,0);
+
+% Inductor
+\draw (0,0) to[L=$L_1$] (2,0);
+
+% Voltage source
+\draw (0,0) to[V=$V_s$] (0,2);
+
+% Current source
+\draw (0,0) to[I=$I_s$] (2,0);
+
+% Complete circuit
+\draw (0,0) 
+    to[V=$V_s$] (0,4)
+    to[R=$R_1$] (4,4)
+    to[C=$C_1$] (4,0)
+    to[short] (0,0);
+
+% Node labels
+\draw (0,0) node[ground]{};
+\draw (2,2) node[circ]{} node[above]{$V_1$};
+
+% Operational amplifier
+\draw (0,0) node[op amp]{};
+\end{circuitikz}
+
+% Voltage and current notation
+$V = IR$ \quad $P = VI$ \quad $\tau = RC$
+
+% Phasors (complex numbers)
+\usepackage{steinmetz}  % For angle notation
+$\phase{30}$  % Angle 30°
+
+% Boolean algebra
+$A \cdot B$ \quad $A + B$ \quad $\overline{A}$</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Computer Science</h3>
+            <pre><code>% Big O notation
+$O(n)$ $O(n^2)$ $O(\log n)$ $O(n \log n)$
+$\Theta(n)$ $\Omega(n)$ $o(n)$ $\omega(n)$
+
+% Data structures
+\usepackage{forest}
+
+% Binary tree
+\begin{forest}
+[8
+    [3
+        [1]
+        [6]
+    ]
+    [10
+        [ ,phantom]
+        [14]
+    ]
+]
+\end{forest}
+
+% Automata and state diagrams
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto]
+\node[state,initial] (q0) {$q_0$};
+\node[state,accepting] (q1) [right of=q0] {$q_1$};
+\path[->]
+    (q0) edge [bend left] node {a} (q1)
+    (q1) edge [bend left] node {b} (q0);
+\end{tikzpicture}
+
+% Turing machine notation
+$(q, a) \rightarrow (q', b, R)$
+
+% Lambda calculus
+$\lambda x. x$
+$(\lambda x. x + 1) 5$
+
+% Type theory
+$f : A \rightarrow B$
+$\forall x : \mathbb{N}. P(x)$</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Linguistics</h3>
+            <pre><code>% Tree diagrams with forest
+\usepackage{forest}
+
+% Syntax tree
+\begin{forest}
+[S
+    [NP
+        [Det [the]]
+        [N [cat]]
+    ]
+    [VP
+        [V [sat]]
+        [PP
+            [P [on]]
+            [NP
+                [Det [the]]
+                [N [mat]]
+            ]
+        ]
+    ]
+]
+\end{forest}
+
+% IPA symbols (requires tipa)
+\usepackage{tipa}
+
+\textipa{["hEl@U]}  % hello
+\textipa{[f@"nEtIks]}  % phonetics
+
+% GB4e for glossing examples
+\usepackage{gb4e}
+
+\begin{exe}
+\ex 
+\gll Das ist ein Beispiel.\\
+     that is a example\\
+\glt 'That is an example.'
+\end{exe}
+
+% Phonological rules
+$a \rightarrow b / c\_d$  % a becomes b between c and d
+
+% Features
+$\begin{bmatrix}
++\text{voice}\\
+-\text{continuant}
+\end{bmatrix}$</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Music Notation</h3>
+            <pre><code>% musixtex (complex) or lilyglyphs (simple)
+\usepackage{lilyglyphs}
+
+\flat\ \sharp\ \natural\ \doublesharp\ \doubleflat
+
+% For actual music notation, use LilyPond
+% and include generated PDFs
+
+% Musical symbols in text
+♩ ♪ ♫ ♬ ♭ ♮ ♯
+
+% Time signatures
+$\frac{4}{4}$ $\frac{3}{4}$ $\frac{6}{8}$</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Diagrams and Flowcharts</h3>
+            <pre><code>% TikZ flowchart
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning}
+
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+    minimum width=3cm, minimum height=1cm, text centered, 
+    draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, 
+    minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, 
+    minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{tikzpicture}[node distance=2cm]
+
+\node (start) [startstop] {Start};
+\node (proc1) [process, below of=start] {Process 1};
+\node (dec1) [decision, below of=proc1, yshift=-0.5cm] {Decision?};
+\node (proc2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
+\node (proc2b) [process, right of=dec1, xshift=3cm] {Process 2b};
+\node (stop) [startstop, below of=proc2a] {Stop};
+
+\draw [arrow] (start) -- (proc1);
+\draw [arrow] (proc1) -- (dec1);
+\draw [arrow] (dec1) -- node[anchor=east] {yes} (proc2a);
+\draw [arrow] (dec1) -- node[anchor=south] {no} (proc2b);
+\draw [arrow] (proc2b) |- (proc1);
+\draw [arrow] (proc2a) -- (stop);
+
+\end{tikzpicture}
+
+% Block diagrams
+\usepackage{blox}
+
+% UML with pgf-umlcd
+\usepackage{pgf-umlcd}
+
+\begin{tikzpicture}
+\begin{class}[text width=4cm]{ClassName}{0,0}
+\attribute{- privateAttribute : Type}
+\attribute{+ publicAttribute : Type}
+\operation{+ publicMethod() : ReturnType}
+\operation{- privateMethod() : ReturnType}
+\end{class}
+\end{tikzpicture}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 14: BEAMER (PRESENTATIONS) -->
+        <section id="section14">
+            <h2>14. Beamer Presentations</h2>
+
+            <h3>Basic Beamer Structure</h3>
+            <pre><code>\documentclass{beamer}
+
+% Theme
+\usetheme{Madrid}
+\usecolortheme{beaver}
+
+\title{Presentation Title}
+\subtitle{Optional Subtitle}
+\author{Author Name}
+\institute{Institution}
+\date{\today}
+
+\begin{document}
+
+% Title frame
+\frame{\titlepage}
+
+% Outline
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+% Section
+\section{Introduction}
+
+% Frame
+\begin{frame}
+\frametitle{Frame Title}
+\framesubtitle{Optional Subtitle}
+Content goes here.
+\end{frame}
+
+\end{document}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Beamer Themes</h3>
+            <pre><code>% Presentation themes
+\usetheme{default}
+\usetheme{AnnArbor}
+\usetheme{Antibes}
+\usetheme{Bergen}
+\usetheme{Berkeley}
+\usetheme{Berlin}
+\usetheme{Boadilla}
+\usetheme{Copenhagen}
+\usetheme{Darmstadt}
+\usetheme{Dresden}
+\usetheme{Frankfurt}
+\usetheme{Goettingen}
+\usetheme{Hannover}
+\usetheme{Ilmenau}
+\usetheme{JuanLesPins}
+\usetheme{Luebeck}
+\usetheme{Madrid}
+\usetheme{Malmoe}
+\usetheme{Marburg}
+\usetheme{Montpellier}
+\usetheme{PaloAlto}
+\usetheme{Pittsburgh}
+\usetheme{Rochester}
+\usetheme{Singapore}
+\usetheme{Szeged}
+\usetheme{Warsaw}
+
+% Color themes
+\usecolortheme{albatross}
+\usecolortheme{beaver}
+\usecolortheme{beetle}
+\usecolortheme{crane}
+\usecolortheme{dolphin}
+\usecolortheme{dove}
+\usecolortheme{fly}
+\usecolortheme{lily}
+\usecolortheme{orchid}
+\usecolortheme{rose}
+\usecolortheme{seagull}
+\usecolortheme{seahorse}
+\usecolortheme{whale}
+\usecolortheme{wolverine}
+
+% Font themes
+\usefonttheme{default}
+\usefonttheme{serif}
+\usefonttheme{structurebold}
+\usefonttheme{structureitalicserif}
+\usefonttheme{structuresmallcapsserif}
+
+% Inner/Outer themes
+\useinnertheme{circles}
+\useinnertheme{rectangles}
+\useinnertheme{rounded}
+\useoutertheme{infolines}
+\useoutertheme{miniframes}
+\useoutertheme{smoothbars}
+\useoutertheme{sidebar}
+\useoutertheme{split}
+\useoutertheme{shadow}
+\useoutertheme{tree}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Overlays and Animations</h3>
+            <pre><code>% Uncover items step by step
+\begin{frame}
+\frametitle{Step by Step}
+\begin{itemize}
+    \item<1-> Always visible
+    \item<2-> Appears on slide 2
+    \item<3-> Appears on slide 3
+    \item<4-> Appears on slide 4
+\end{itemize}
+\end{frame}
+
+% Overlay specifications
+\only<2>{Visible only on slide 2}
+\uncover<2->{Visible from slide 2 onwards}
+\visible<2->{Visible from slide 2 (preserves space)}
+\invisible<2->{Invisible from slide 2 (preserves space)}
+\alt<2>{Show on 2}{Show otherwise}
+\temporal<3>{Before 3}{On 3}{After 3}
+
+% Pause command
+\begin{frame}
+First item
+\pause
+Second item
+\pause
+Third item
+\end{frame}
+
+% Alert
+\alert<2>{This is highlighted on slide 2}
+
+% Block overlays
+\begin{block}<2->{Block Title}
+Content visible from slide 2
+\end{block}
+
+% Multiple specifications
+\item<1,3> Visible on slides 1 and 3
+\item<2-4> Visible on slides 2, 3, and 4
+\item<-3> Visible up to slide 3
+\item<3-> Visible from slide 3</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Beamer Blocks</h3>
+            <pre><code>% Standard block
+\begin{block}{Block Title}
+Content
+\end{block}
+
+% Alert block
+\begin{alertblock}{Important!}
+Warning or important information
+\end{alertblock}
+
+% Example block
+\begin{exampleblock}{Example}
+Example content
+\end{exampleblock}
+
+% Theorem blocks
+\begin{theorem}
+Statement of theorem
+\end{theorem}
+
+\begin{corollary}
+Statement of corollary
+\end{corollary}
+
+\begin{proof}
+Proof content
+\end{proof}
+
+\begin{definition}
+Definition content
+\end{definition}
+
+\begin{example}
+Example content
+\end{example}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Columns in Beamer</h3>
+            <pre><code>\begin{frame}
+\frametitle{Two Columns}
+
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+Left column content
+\begin{itemize}
+    \item Point 1
+    \item Point 2
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+Right column content
+\includegraphics[width=\textwidth]{image.png}
+\end{column}
+
+\end{columns}
+
+\end{frame}
+
+% With vertical alignment
+\begin{columns}[t]  % Top aligned
+\begin{columns}[c]  % Center aligned (default)
+\begin{columns}[b]  % Bottom aligned</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Handouts and Notes</h3>
+            <pre><code>% Create handout version
+\documentclass[handout]{beamer}
+
+% Notes for presenter
+\setbeameroption{show notes}
+\setbeameroption{show notes on second screen=right}
+
+\begin{frame}
+\frametitle{Title}
+Content
+\note{Speaker notes here}
+\note[item]{Point 1}
+\note[item]{Point 2}
+\end{frame}
+
+% Print slides with notes
+\documentclass[handout,notes=only]{beamer}
+
+% Frames per page for handout
+\usepackage{pgfpages}
+\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+\pgfpagesuselayout{4 on 1}[a4paper,landscape]</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Beamer Customization</h3>
+            <pre><code>% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Customize colors
+\setbeamercolor{structure}{fg=blue}
+\setbeamercolor{frametitle}{bg=blue!20}
+\setbeamercolor{block title}{bg=blue,fg=white}
+
+% Customize fonts
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+
+% Footline with page numbers
+\setbeamertemplate{footline}[frame number]
+
+% Logo
+\logo{\includegraphics[height=1cm]{logo.png}}
+
+% Section page
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{title}
+    \usebeamerfont{title}\insertsectionhead\par
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+% Bibliography
+\begin{frame}[allowframebreaks]
+\frametitle{References}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{frame}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SECTION 15: TROUBLESHOOTING & BEST PRACTICES -->
+        <section id="section15">
+            <h2>15. Troubleshooting & Best Practices</h2>
+
+            <h3>Common Errors and Solutions</h3>
+            <details>
+                <summary>Click to expand common errors</summary>
+                <table>
+                    <tr><th>Error</th><th>Cause</th><th>Solution</th></tr>
+                    <tr>
+                        <td>! Undefined control sequence</td>
+                        <td>Command not defined or typo</td>
+                        <td>Check spelling, load required package</td>
+                    </tr>
+                    <tr>
+                        <td>! Missing $ inserted</td>
+                        <td>Math symbols outside math mode</td>
+                        <td>Wrap in $ $ or \( \)</td>
+                    </tr>
+                    <tr>
+                        <td>! LaTeX Error: Environment ... undefined</td>
+                        <td>Package not loaded</td>
+                        <td>Add \usepackage{...} to preamble</td>
+                    </tr>
+                    <tr>
+                        <td>! File not found</td>
+                        <td>Missing file or wrong path</td>
+                        <td>Check file path and spelling</td>
+                    </tr>
+                    <tr>
+                        <td>Overfull \hbox</td>
+                        <td>Line too wide</td>
+                        <td>Rephrase, add \linebreak, or use \sloppy</td>
+                    </tr>
+                    <tr>
+                        <td>Underfull \hbox</td>
+                        <td>Line too short (stretched)</td>
+                        <td>Rephrase or add \fussy</td>
+                    </tr>
+                    <tr>
+                        <td>! Missing \endgroup</td>
+                        <td>Unmatched braces</td>
+                        <td>Check all { } pairs are balanced</td>
+                    </tr>
+                    <tr>
+                        <td>! Extra alignment tab</td>
+                        <td>Too many & in table</td>
+                        <td>Check table column count</td>
+                    </tr>
+                    <tr>
+                        <td>! LaTeX Error: \begin{...} ended by \end{...}</td>
+                        <td>Mismatched environments</td>
+                        <td>Check environment names match</td>
+                    </tr>
+                    <tr>
+                        <td>! Package clash</td>
+                        <td>Conflicting packages</td>
+                        <td>Load packages in correct order, check documentation</td>
+                    </tr>
+                    <tr>
+                        <td>! Dimension too large</td>
+                        <td>Figure/table too big</td>
+                        <td>Scale down with \includegraphics[width=...]</td>
+                    </tr>
+                    <tr>
+                        <td>! Runaway argument</td>
+                        <td>Missing closing brace</td>
+                        <td>Check all command arguments are properly closed</td>
+                    </tr>
+                    <tr>
+                        <td>! You can't use `macro parameter character #'</td>
+                        <td>Unescaped # outside definition</td>
+                        <td>Use \# instead of #</td>
+                    </tr>
+                    <tr>
+                        <td>Citation undefined</td>
+                        <td>BibTeX not run or wrong key</td>
+                        <td>Compile with pdflatex → bibtex → pdflatex × 2</td>
+                    </tr>
+                    <tr>
+                        <td>Reference undefined</td>
+                        <td>Label not set or needs recompile</td>
+                        <td>Compile twice to resolve cross-references</td>
+                    </tr>
+                </table>
+            </details>
+
+            <h3>Compilation Workflow</h3>
+            <pre><code>% Standard compilation
+pdflatex document.tex
+pdflatex document.tex  % Second run for cross-references
+
+% With bibliography
+pdflatex document.tex
+bibtex document
+pdflatex document.tex
+pdflatex document.tex
+
+% With BibLaTeX
+pdflatex document.tex
+biber document
+pdflatex document.tex
+pdflatex document.tex
+
+% With index
+pdflatex document.tex
+makeindex document
+pdflatex document.tex
+
+% XeLaTeX (for Unicode/system fonts)
+xelatex document.tex
+
+% LuaLaTeX (modern engine)
+lualatex document.tex
+
+% Complete workflow
+pdflatex document
+bibtex document
+makeindex document
+pdflatex document
+pdflatex document</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Engine Differences</h3>
+            <table>
+                <tr><th>Engine</th><th>Pros</th><th>Cons</th><th>Use When</th></tr>
+                <tr>
+                    <td><strong>pdfLaTeX</strong></td>
+                    <td>Fast, most compatible, standard</td>
+                    <td>Limited Unicode support, font restrictions</td>
+                    <td>Standard documents, maximum compatibility</td>
+                </tr>
+                <tr>
+                    <td><strong>XeLaTeX</strong></td>
+                    <td>Full Unicode, system fonts, modern</td>
+                    <td>Slower than pdfLaTeX</td>
+                    <td>Non-English text, system fonts, Unicode symbols</td>
+                </tr>
+                <tr>
+                    <td><strong>LuaLaTeX</strong></td>
+                    <td>Lua scripting, modern, Unicode support</td>
+                    <td>Slower, some packages incompatible</td>
+                    <td>Advanced scripting, complex documents</td>
+                </tr>
+            </table>
+
+            <h3>Font Issues</h3>
+            <pre><code>% Check if font is available
+\documentclass{article}
+\usepackage{fontspec} % XeLaTeX/LuaLaTeX only
+\setmainfont{Times New Roman}
+
+% List available fonts (command line)
+fc-list  % Linux
+fc-list : family  % Font families only
+
+% Install font (TeX Live)
+tlmgr install collection-fontsrecommended
+tlmgr install collection-fontsextra
+
+% Font encoding issues (pdfLaTeX)
+\usepackage[T1]{fontenc}  % Better than default OT1
+\usepackage[utf8]{inputenc}  % UTF-8 input
+
+% Latin Modern (improved Computer Modern)
+\usepackage{lmodern}
+
+% Check if font command exists
+\ifx\myfont\undefined
+    \newcommand{\myfont}[1]{\textsf{#1}}
+\fi</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Unicode Issues</h3>
+            <pre><code>% pdfLaTeX - Limited Unicode
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Individual symbols
+\usepackage{textcomp}
+\texteuro  % €
+\textdegree  % °
+
+% XeLaTeX/LuaLaTeX - Full Unicode
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+% Direct Unicode input works:
+α β γ δ ε ζ η θ
+∑ ∫ ∂ ∇ ∞
+€ £ ¥ ©
+
+% Math Unicode
+\setmathfont{Latin Modern Math}
+\setmathfont{XITS Math}
+\setmathfont{Libertinus Math}
+
+% Specific language support
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setotherlanguage{arabic}
+\setotherlanguage{chinese}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Performance Optimization</h3>
+            <pre><code>% Draft mode (faster compilation)
+\documentclass[draft]{article}
+% Images shown as boxes, overfull boxes marked
+
+% Conditional compilation
+\includeonly{chapter1,chapter3}  % Only compile these
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+
+% Precompiled preamble
+% Save as preamble.tex
+\documentclass{article}
+\usepackage{...all packages...}
+\begin{document}
+\end{document}
+
+% Compile preamble
+pdflatex -ini -jobname="preamble" "&pdflatex preamble.tex\dump"
+
+% Use in main document
+%&preamble
+\begin{document}
+...content...
+\end{document}
+
+% Reduce figure size
+\pdfcompresslevel=9
+\pdfobjcompresslevel=2
+
+% External TikZ pictures (compile once)
+\usetikzlibrary{external}
+\tikzexternalize
+
+% Avoid expensive packages if not needed
+% microtype, tikz, pgfplots take time
+
+% Use \input instead of \include for small files
+\input{section1}  % No page break, no aux file</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+            <h3>Best Practices</h3>
+            <details open>
+                <summary>Click to expand best practices</summary>
+                <h4>Document Organization</h4>
+                <pre><code>% Use separate files for large documents
+main.tex
+    preamble.tex
+    chapters/
+        chapter1.tex
+        chapter2.tex
+    figures/
+        fig1.pdf
+        fig2.pdf
+    references.bib
+
+% Main file
+\documentclass{article}
+\input{preamble}
+\begin{document}
+\include{chapters/chapter1}
+\include{chapters/chapter2}
+\bibliography{references}
+\end{document}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Code Style</h4>
+                <pre><code>% Use consistent indentation
+\begin{itemize}
+    \item First item
+    \item Second item
+\end{itemize}
+
+% Group preamble logically
+% 1. Document class
+% 2. Page layout
+% 3. Fonts and encoding
+% 4. Math packages
+% 5. Graphics
+% 6. Bibliography
+% 7. Custom commands
+
+% Comment your code
+% This theorem is from Smith (2020)
+\begin{theorem}
+...
+\end{theorem}
+
+% Use semantic commands
+\newcommand{\vectorspace}{\mathbb{V}}
+% Instead of repeatedly typing \mathbb{V}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Figures and Tables</h4>
+                <pre><code>% Always use vector graphics when possible
+% PDF, EPS (not PNG/JPG for diagrams)
+
+% Consistent figure placement
+\begin{figure}[htbp]  % Try here, top, bottom, page
+    \centering
+    \includegraphics[width=0.8\textwidth]{figure}
+    \caption{Descriptive caption}
+    \label{fig:label}
+\end{figure}
+
+% Reference with \ref or \autoref
+See Figure~\ref{fig:label}
+See \autoref{fig:label}  % Requires hyperref
+
+% Use booktabs for professional tables
+\usepackage{booktabs}
+\begin{table}[htbp]
+    \centering
+    \caption{Table caption}
+    \label{tab:label}
+    \begin{tabular}{lrr}
+        \toprule
+        Item & Value 1 & Value 2 \\
+        \midrule
+        A & 1.0 & 2.0 \\
+        B & 3.0 & 4.0 \\
+        \bottomrule
+    \end{tabular}
+\end{table}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Mathematics</h4>
+                <pre><code>% Use proper spacing
+$f(x) dx$ % Wrong
+$f(x)\,dx$ % Correct
+
+% Displayed equations should be numbered if referenced
+\begin{equation}
+E = mc^2
+\label{eq:einstein}
+\end{equation}
+
+% Use align for multiple equations
+\begin{align}
+a &= b + c \\
+d &= e + f
+\end{align}
+
+% Define custom operators
+\DeclareMathOperator{\Hom}{Hom}
+
+% Use correct fonts in math
+$\mathrm{d}x$ % Differential
+$\text{for all } x$ % Text</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Bibliography</h4>
+                <pre><code>% Use BibLaTeX (modern)
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{references.bib}
+\printbibliography
+
+% Keep .bib file clean and consistent
+@article{key2020,
+    author = {Last, First and Last, First},
+    title = {Title},
+    journal = {Journal Name},
+    year = {2020},
+    volume = {10},
+    pages = {1--10},
+    doi = {10.1234/example}
+}
+
+% Use DOI when available
+% Use consistent naming: lastnameyear</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Version Control</h4>
+                <pre><code>% .gitignore for LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.pdf  # Or keep only final PDFs
+
+% Commit meaningful chunks
+# Good commit messages:
+"Add introduction section"
+"Fix equation in theorem 3"
+"Update bibliography"</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Accessibility</h4>
+                <pre><code>% Add alt text to images
+\usepackage{pdfcomment}
+\pdftooltip{\includegraphics{fig}}{Description}
+
+% Use accessibility package
+\usepackage{accessibility}
+
+% Proper structure with sections
+% Proper figure captions
+% Meaningful link text
+\href{url}{descriptive text}  % Not "click here"
+
+% Tagged PDF (XeLaTeX/LuaLaTeX)
+\usepackage{tagpdf}</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+                <h4>Final Checklist</h4>
+                <ul>
+                    <li>✓ All citations resolved (no ? marks)</li>
+                    <li>✓ All references resolved</li>
+                    <li>✓ No overfull/underfull warnings (or justified)</li>
+                    <li>✓ Figures and tables numbered correctly</li>
+                    <li>✓ Consistent formatting throughout</li>
+                    <li>✓ Spell check complete</li>
+                    <li>✓ Math notation consistent</li>
+                    <li>✓ Bibliography formatted correctly</li>
+                    <li>✓ Page numbers correct</li>
+                    <li>✓ PDF bookmarks work (hyperref)</li>
+                    <li>✓ No broken hyperlinks</li>
+                    <li>✓ Print version tested (if needed)</li>
+                </ul>
+            </details>
+
+            <h3>Essential Packages Reference</h3>
+            <table>
+                <tr><th>Package</th><th>Purpose</th><th>Essential Commands</th></tr>
+                <tr><td>amsmath</td><td>Advanced math</td><td>align, equation, split</td></tr>
+                <tr><td>amssymb</td><td>Math symbols</td><td>\mathbb, \mathfrak</td></tr>
+                <tr><td>graphicx</td><td>Include images</td><td>\includegraphics</td></tr>
+                <tr><td>hyperref</td><td>Hyperlinks, bookmarks</td><td>\href, \url, \autoref</td></tr>
+                <tr><td>geometry</td><td>Page layout</td><td>\geometry{margin=1in}</td></tr>
+                <tr><td>biblatex</td><td>Bibliography (modern)</td><td>\cite, \printbibliography</td></tr>
+                <tr><td>tikz</td><td>Graphics, diagrams</td><td>\begin{tikzpicture}</td></tr>
+                <tr><td>listings</td><td>Code formatting</td><td>\lstlisting</td></tr>
+                <tr><td>booktabs</td><td>Professional tables</td><td>\toprule, \midrule, \bottomrule</td></tr>
+                <tr><td>xcolor</td><td>Colors</td><td>\color, \textcolor</td></tr>
+                <tr><td>fancyhdr</td><td>Headers/footers</td><td>\pagestyle{fancy}</td></tr>
+                <tr><td>enumitem</td><td>Customize lists</td><td>\begin{enumerate}[label=...]</td></tr>
+                <tr><td>siunitx</td><td>Units, numbers</td><td>\SI{10}{\meter}</td></tr>
+                <tr><td>microtype</td><td>Typography improvement</td><td>(automatic)</td></tr>
+                <tr><td>caption</td><td>Customize captions</td><td>\captionsetup</td></tr>
+            </table>
+
+            <h3>Quick Reference: Useful Shortcuts</h3>
+            <pre><code>% Non-breaking space
+word~word  % Prevents line break between words
+
+% Quotes
+``double quotes''
+`single quotes'
+
+% Dashes
+- hyphen
+-- en-dash (ranges: 1--10)
+--- em-dash (punctuation---like this)
+
+% Ellipsis
+\ldots or \dots (context-aware)
+
+% Spacing
+\, thin space
+\: medium space
+\; thick space
+\quad quad space
+\qquad double quad
+\hspace{1cm} custom horizontal space
+\vspace{1cm} custom vertical space
+~ non-breaking space
+\noindent start paragraph without indent
+
+% Line breaks
+\\ new line
+\linebreak[0-4] suggest line break
+\newline force new line
+\pagebreak force page break
+\clearpage finish page, flush floats
+
+% Prevent breaks
+\mbox{text} prevents line break
+\nolinebreak prevent line break
+\nopagebreak prevent page break
+word\nobreak\ word
+
+% Horizontal rules
+\hrulefill fills with line
+\dotfill fills with dots
+\rule{width}{height} custom rule</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <footer>
+            <p><strong>Ultimate LaTeX Cheat Sheet</strong> | Version 1.0.0 | Generated: January 2, 2026</p>
+            <p>This comprehensive reference covers all essential LaTeX commands from basic documents to advanced features.</p>
+            <p>For more information, visit <a href="https://www.latex-project.org/" target="_blank">latex-project.org</a> | <a href="https://www.overleaf.com/learn" target="_blank">Overleaf Documentation</a> | <a href="https://ctan.org/" target="_blank">CTAN</a></p>
+        </footer>
+    </main>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+        });
+
+        // Copy code functionality
+        function copyCode(button) {
+            const pre = button.previousElementSibling;
+            const code = pre.textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#28a745';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                button.textContent = 'Error';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Highlight current section in sidebar
+        const sections = document.querySelectorAll('main section');
+        const navLinks = document.querySelectorAll('#sidebar nav a');
+
+        function highlightCurrentSection() {
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.style.background = 'rgba(255,255,255,0.2)';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightCurrentSection);
+        highlightCurrentSection(); // Initial call
+
+        // Add search functionality (bonus)
+        const searchBox = document.createElement('input');
+        searchBox.type = 'text';
+        searchBox.placeholder = 'Search LaTeX commands...';
+        searchBox.style.cssText = 'width: 100%; padding: 8px; margin: 10px 0; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-code); color: var(--text-primary);';
+        
+        const sidebar = document.getElementById('sidebar');
+        sidebar.insertBefore(searchBox, sidebar.querySelector('nav'));
+
+        searchBox.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const allCodeBlocks = document.querySelectorAll('pre code');
+            const allHeadings = document.querySelectorAll('main h2, main h3, main h4');
+            
+            // Simple highlight (could be enhanced)
+            allCodeBlocks.forEach(block => {
+                const text = block.textContent.toLowerCase();
+                if (searchTerm && text.includes(searchTerm)) {
+                    block.parentElement.style.border = '2px solid var(--accent-color)';
+                } else {
+                    block.parentElement.style.border = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
