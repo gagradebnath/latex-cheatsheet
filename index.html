@@ -3598,6 +3598,9 @@ word\nobreak\ word
             <p>This comprehensive reference covers all essential LaTeX commands from basic documents to advanced features.</p>
             <p>For more information, visit <a href="https://www.latex-project.org/" target="_blank">latex-project.org</a> | <a href="https://www.overleaf.com/learn" target="_blank">Overleaf Documentation</a> | <a href="https://ctan.org/" target="_blank">CTAN</a></p>
         </footer>
+            <div id="floating-footer">
+                gagradebnath
+            </div>
     </main>
 
     <script>
@@ -3700,5 +3703,23 @@ word\nobreak\ word
             });
         });
     </script>
+<style>
+#floating-footer {
+    position: fixed;
+    right: 24px;
+    bottom: 18px;
+    /* background: var(--accent-color); */
+    background-color: red;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px 8px 20px 8px;
+    font-size: 1.5em;
+    font-family: monospace;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    opacity: 0.92;
+    z-index: 2000;
+    pointer-events: none;
+}
+</style>
 </body>
 </html>
